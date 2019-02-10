@@ -8,8 +8,6 @@ services:
     volumes:
       # Mounts the project directory on the host to /app inside the container,
       - ./server:/app
-      # node_modules from this new volume will be used and not from your local dev env.
-      - /app/node_modules/
     # Expose ports [HOST:CONTAINER}
     ports:
       - "4040:4040"
@@ -31,8 +29,6 @@ services:
     volumes:
       # Mounts the project directory on the host to /app inside the container,
       - ./client:/app
-      # node_modules from this new volume will be used and not from your local dev env.
-      - /app/node_modules/
     
     # Expose ports [HOST:CONTAINER}
     ports:
