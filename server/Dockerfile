@@ -18,4 +18,4 @@ COPY . /app/
 EXPOSE 4040
 
 # cmd to start service
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "dev" ]
