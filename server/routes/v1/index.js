@@ -28,6 +28,7 @@ router.get('/articles', ArticlesController.getAll);
  * Wishlist
  */
 router.post('/wishlists', WishlistController.create);
+router.get('/wishlists/:wishlist_id', WishlistController.getOne);
 router.get('/wishlists', WishlistController.getAll);
 // router.post('/wishlists/:wishlist_id/:article_id', WishlistController.addArticleToWishlist);
 // router.delete('/wishlists/:wishlist_id/:article_id', WishlistController.RemoveArticleToWishlist);
