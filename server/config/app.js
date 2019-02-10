@@ -5,6 +5,8 @@ const compress = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 
+const { logs } = require('./vars');
+
 
 /**
 * Express instance
