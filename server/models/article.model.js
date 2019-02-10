@@ -6,6 +6,7 @@ let ArticleSchema = mongoose.Schema({
   price: Number,
   image: String,
   brand: String,
+  wishlist: [mongoose.Schema.Types.ObjectId]
 }, {
     timestamps: true
   });
@@ -16,4 +17,4 @@ ArticleSchema.methods.toWeb = function () {
   return json;
 };
 
-module.exports = mongoose.model('Articles', ArticleSchema);
+module.exports = mongoose.model('Article', ArticleSchema);
