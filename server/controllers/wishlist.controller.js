@@ -47,6 +47,29 @@ module.exports.getOne = function (req, res) {
 };
 
 /**
+ * Get One
+ */
+module.exports.getAllArticles = async function (req, res) {
+  res.setHeader('Content-Type', 'application/json');
+
+  let wishlist_id, err, wishlist, article;
+  wishlist_id = req.params.wishlist_id;
+
+  [err, wishlist] = await to(Wishlist.findOne({ _id: wishlist_id }));
+  // [err, article] = await to(Article.find({}).populate('articles'));
+
+  console.log(article)
+  if (err) return ReE(res, "Error finding Wishlist");
+
+  if (!article) return ReE(res, "Wishlist not found with id: " + wishlist_id);
+
+  // return ReS(res, { article: article.toWeb() });
+  return ReS(res, { wishlist: wishlist.toWeb() });
+};
+
+
+
+/**
  * addArticleToWishlist
  */
 module.exports.addArticleToWishlist = async function (req, res) {
@@ -62,6 +85,8 @@ module.exports.addArticleToWishlist = async function (req, res) {
 
   return ReS(res, { article: article.toWeb() });
 };
+
+
 
 /**
  * Remove Article
