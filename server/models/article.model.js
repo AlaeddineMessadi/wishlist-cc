@@ -6,7 +6,6 @@ let ArticleSchema = mongoose.Schema({
   price: Number,
   image: String,
   brand: String,
-  wishlist: [mongoose.Schema.Types.ObjectId]
 }, {
     timestamps: true
   });
