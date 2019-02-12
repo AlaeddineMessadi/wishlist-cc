@@ -1,0 +1,33 @@
+Arguments: 
+  /home/alaeddine/.nvm/versions/node/v10.10.0/bin/node /usr/share/yarn/bin/yarn.js add express body-parser cors helmet
+
+PATH: 
+  /home/alaeddine/.nvm/versions/node/v10.10.0/bin:/home/alaeddine/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.12.3
+
+Node version: 
+  10.10.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, mkdir '/home/alaeddine/Development/Tests/article-wishlist-coding-challenge/server/node_modules/array-flatten'
+
+npm manifest: 
+  {
+    "name": "wishlist-api",
+    "version": "1.0.0",
+    "description": "WishList API adidas",
+    "main": "index.js",
+    "author": "Alaeddine Messadi <alaeddine.messadi@icloud.com>",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
