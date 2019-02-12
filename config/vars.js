@@ -8,7 +8,7 @@ require('dotenv-safe').load({
 
 let CONFIG = {} //Make this global to use all over the application
 
-CONFIG.app = process.env.APP || 'development';
+CONFIG.app = process.env.NODE_ENV || 'development';
 CONFIG.port = process.env.PORT || '4040';
 
 CONFIG.db_dialect = process.env.DB_DIALECT || 'mongo';
@@ -18,5 +18,7 @@ CONFIG.db_name = process.env.DB_NAME || 'db_name';
 CONFIG.db_user = process.env.DB_USER || 'user';
 CONFIG.db_password = process.env.DB_PASSWORD || 'user';
 
-module.exports = CONFIG;
+CONFIG.logs = process.env.NODE_ENV === 'prod' ? 'combined' : 'dev',
+
+  module.exports = CONFIG;
 
