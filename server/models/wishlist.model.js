@@ -2,12 +2,25 @@ const mongoose = require('mongoose');
 
 let WishlistSchema = mongoose.Schema({
   name: String,
-  description: String,
-  articles: [{ article: { type: mongoose.Schema.ObjectId, ref: 'Articles' } }]
+  description: String
 }, {
-    timestamps: true
+    timestamps: true,
+    toObject: { virtuals: true }
   });
 
+
+WishlistSchema.virtual('articles', {
+  ref: 'Article', // The model to use
+  localField: 'title', // Find people where `localField`
+  foreignField: 'wishlist', // is equal to `foreignField`
+  justOne: false
+});
+
+WishlistSchema.methods.addArticle = function (article) {
+  console.log(this.articles)
+
+  return this;
+};
 
 WishlistSchema.methods.toWeb = function () {
   let json = this.toJSON();
@@ -16,4 +29,4 @@ WishlistSchema.methods.toWeb = function () {
 };
 
 
-module.exports = mongoose.model('Wishlists', WishlistSchema);
+module.exports = mongoose.model('Wishlist', WishlistSchema);
