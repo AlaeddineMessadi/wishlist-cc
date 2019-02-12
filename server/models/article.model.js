@@ -4,6 +4,7 @@ let ArticleSchema = mongoose.Schema({
   title: String,
   description: String,
   price: Number,
+  image: String,
   company: String
 }, {
     timestamps: true
