@@ -35,7 +35,7 @@ logs:
 enter-client:
 	@docker-compose run --rm --user root --entrypoint /bin/sh client_adidas
 
-enter-servert:
+enter-server:
 	@docker-compose run --rm --user root --entrypoint /bin/sh api_adidas
 
 destroy:
