@@ -107,6 +107,11 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+await-to-js@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/await-to-js/-/await-to-js-2.1.1.tgz#c2093cd5a386f2bb945d79b292817bbc3f41b31b"
+  integrity sha512-CHBC6gQGCIzjZ09tJ+XmpQoZOn4GdWePB4qUweCaKNJ0D3f115YdhmYVTZ4rMVpiJ3cFzZcTYK1VMYEICV4YXw==
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -759,6 +764,11 @@ finalhandler@1.1.1:
     parseurl "~1.3.2"
     statuses "~1.4.0"
     unpipe "~1.0.0"
+
+fixtures-generator-node@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/fixtures-generator-node/-/fixtures-generator-node-0.1.6.tgz#4d68353a4e5c4d1e185efe1d404fd9a91a7f1572"
+  integrity sha512-uvhSwoJ6KYBkn/uCYahcr01yR1pATMVrIyoiKHG+w4o7oukMcR50btnfcqtbdmeJ2UW82lA4JlBzJWruSHpQVQ==
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -1736,6 +1746,11 @@ package-json@^4.0.0:
     registry-auth-token "^3.0.1"
     registry-url "^3.0.3"
     semver "^5.1.0"
+
+parse-error@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/parse-error/-/parse-error-0.2.0.tgz#a236d5076cbe196c15781b892b20d0b69759ff5b"
+  integrity sha1-ojbVB2y+GWwVeBuJKyDQtpdZ/1s=
 
 parseurl@~1.3.2:
   version "1.3.2"
