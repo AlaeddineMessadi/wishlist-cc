@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import classes from './search.module.scss';
 class SearchPage extends Component {
 
     state = {
@@ -13,13 +14,15 @@ class SearchPage extends Component {
 
     render() {
         return (
-            <div>
-                <div className='input-fields'>
-                    <input type='text' name='keyword' placeholder='Search' 
-                    className='input-line full-width' 
-                    onChange={(e) => this.inputHandler(e)} />
-                </div>
-                <div><button className='ghost-round full-width' onClick={this.loginHandler}>Login</button></div>
+            <div className={classes.wrap}>
+                <form action="" autoComplete="on">
+                    <input
+                        className={classes.search}
+                        type="text"
+                        placeholder="What're we looking for ?"
+                        onClick={this.loginHandler} />
+                    <button className={classes.submit} type="submit">Search</button>
+                </form>
             </div>
 
         )
