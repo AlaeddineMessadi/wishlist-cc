@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 
+import Card from '../components/Card/Card';
+
+
 export default class HomePage extends Component {
   render() {
     return (
       <div>
-        HOme Page
+        <Card /><Card /><Card /><Card />
       </div>
     )
   }
