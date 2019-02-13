@@ -83,7 +83,24 @@ module.exports.addArticleToWishlist = async function (req, res) {
   return ReS(res, { wishlist: wishlist.toWeb() });
 };
 
+/**
+ * removeArticleToWishlist
+ */
+module.exports.removeArticleToWishlist = async function (req, res) {
+  let err, article, wishlist, data;
+  article = req.article;
+  wishlist = req.wishlist;
 
+  const index = wishlist.articles.indexOf(article._id);
+
+  if (index >= 0) {
+    wishlist.articles.splice(index, 1);
+  }
+
+  [err, wishlist] = await to(wishlist.save());
+
+  return ReS(res, { wishlist: wishlist.toWeb() });
+};
 
 /**
  * Remove Article
