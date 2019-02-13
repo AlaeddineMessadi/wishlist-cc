@@ -9,7 +9,8 @@ if (CONFIG.db_host != '') {
     mongoose.set('debug', true);
   }
 
-  const mongo_location = 'mongodb://' + CONFIG.db_host + ':' + CONFIG.db_port;
+  console.log(CONFIG)
+  const mongo_location = 'mongodb://' + CONFIG.db_host + ':' + CONFIG.db_port + '/' + CONFIG.db_name;
 
   console.log(mongo_location)
 
