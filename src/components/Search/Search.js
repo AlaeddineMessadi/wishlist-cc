@@ -23,20 +23,19 @@ class Search extends Component {
 
     render() {
         return (
-            <div className={classes.wrap}>
+            <div className={ classes.wrap }>
 
                 <form action="#" autoComplete="on">
                     <input
-                        className={classes.search}
+                        className={ classes.search }
                         name="keyword"
                         type="text"
                         placeholder="What're we looking for ?"
-                        onChange={(e) => { this.inputHandler(e) }} />
-                    <button
-                        className={classes.submit}
-                        type="submit"
-                        onClick={(e) => { this.props.onClick() }}
-                    >Search</button>
+                        onChange={ (e) => { this.inputHandler(e) } } />
+                    <span className={ classes.submit }
+                        onClick={ (e) => { this.props.onClick() } }>
+                        <i class="fa fa-search"></i>
+                    </span>
                 </form>
 
             </div>
