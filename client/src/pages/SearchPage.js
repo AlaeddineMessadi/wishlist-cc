@@ -1,30 +1,28 @@
 import React, { Component } from 'react';
 
-import classes from './search.module.scss';
+import Search from '../components/Search/Search';
+
 class SearchPage extends Component {
-
     state = {
-        keyword: ""
+        list: []
     }
 
-    inputHandler = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
-        e.target.checkValidity();
+    addToLIst = (product) => {
+        this.setState({
+            list: [...this.state.list, product]
+        })
     }
-
     render() {
         return (
-            <div className={classes.wrap}>
-                <form action="" autoComplete="on">
-                    <input
-                        className={classes.search}
-                        type="text"
-                        placeholder="What're we looking for ?"
-                        onClick={this.loginHandler} />
-                    <button className={classes.submit} type="submit">Search</button>
-                </form>
+            <div>
+                <h1>Search Articles</h1>
+                <Search onChange={this.addToLIst} />
+                <div>
+                    {
+                        this.state.list.map((i,v)=> (<p>{v}</p>))
+                    }
+                </div>
             </div>
-
         )
     }
 }
