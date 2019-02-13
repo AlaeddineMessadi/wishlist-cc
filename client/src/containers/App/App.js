@@ -4,7 +4,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Main from '../../components/Main/Main';
 
-import HomePage from '../../pages/HomePage';
+import Wishlist from '../../pages/WishlistPage';
 import SearchPage from '../../pages/SearchPage';
 
 import classes from './App.module.scss';
@@ -16,9 +16,9 @@ class App extends Component {
         <Header />
         <Main>
           <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/search' component={SearchPage} />
-            <Route exact path='/wishlist' component={HomePage} />
+            <Route exact path='/' component={ Wishlist } />
+            <Route exact path='/search' component={ SearchPage } />
+            <Route exact path='/wishlist' component={ Wishlist } />
           </Switch>
         </Main>
       </React.Fragment>

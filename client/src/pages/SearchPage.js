@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Search from '../components/Search/Search';
 import Card from '../components/Card/Card';
+import List from '../components/List/List';
 
 class SearchPage extends Component {
     state = {
@@ -19,20 +20,23 @@ class SearchPage extends Component {
         return (
             <div>
                 <h1>Search Articles</h1>
-                <Search addToList={this.addToLIst} />
-                <br/>
+                <Search addToList={ this.addToLIst } />
+                <br />
+                <List items={
+                    this.state.list.map((item, index) => (<Card key={ index }
+                        name={ item.displayName }
+                        price={ item.price }
+                        salePrice={ item.salePrice }
+                        reviews={ item.reviewRating }
+                        imgUrl={ item.imageURL }
+                        reviewCount={ item.reviewCount }
+                        reviewRatings={ item.reviewRatings }
+
+                    />))
+                }></List>
                 <div>
                     {
-                        this.state.list.map((item, index) => (<Card key={index}
-                            name={item.displayName}
-                            price={item.price}
-                            salePrice={item.salePrice}
-                            reviews={item.reviewRating}
-                            imgUrl={item.imageURL}
-                            reviewCount={item.reviewCount}
-                            reviewRatings={item.reviewRatings}
 
-                        />))
                     }
                 </div>
             </div>

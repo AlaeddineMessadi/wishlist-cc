@@ -20,7 +20,6 @@
     .top {
       height: 80%;
       width: 100%;
-      // background: url(https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg) no-repeat center center;
       background-size: 100%;
     }
     .bottom {
@@ -99,7 +98,7 @@
           width: calc(30% - 1px);
           clear: both;
           border-right: solid thin rgba(255, 255, 255, 0.3);
-          height: 50%;
+          height: 85%;
           background: #BC3B59;
           transition: transform 0.5s, background 0.5s;
           &:hover {
@@ -167,6 +166,11 @@
       transition: opacity 0.2s, transform 0.8s;
       color: white;
       font-size: 13px;
+      p {
+        font-size: 20px;
+        margin-bottom: 0;
+        font-weight: 600;
+      }
     }
   }
 }
