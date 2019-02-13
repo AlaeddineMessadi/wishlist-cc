@@ -8,7 +8,7 @@ import classes from "./Header.module.scss";
  */
 const header = props => (
   <header className={ classes.header }>
-    I am the header
+    <p>Adidas Wishlist</p>
   </header>
 );
 
