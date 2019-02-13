@@ -1,5 +1,7 @@
 import React from "react";
 
+import {Link} from 'react-router-dom';
+
 import classes from "./Header.module.scss";
 
 /**
@@ -8,7 +10,7 @@ import classes from "./Header.module.scss";
  */
 const header = props => (
   <header className={ classes.header }>
-    <p>Adidas Wishlist</p>
+    <Link to="/" className={classes.text_logo}>Adidas Wishlist</Link>
   </header>
 );
 
