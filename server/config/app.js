@@ -30,4 +30,7 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 
+// mount api v1 routes
+app.use('/v1', routes);
+
 module.exports = app;
