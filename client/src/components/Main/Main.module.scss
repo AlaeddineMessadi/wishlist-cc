@@ -1,0 +1,23 @@
+.container {
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+@media only screen and (min-width: 480px) {
+  .container {
+    width: 84%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 740px;
+  }
+}
+
+@media only screen and (min-width: 1088px) {
+  .container {
+    width: 1080px;
+  }
+}
