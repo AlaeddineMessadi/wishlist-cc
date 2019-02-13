@@ -5,6 +5,17 @@ const Wishlist = require('../models/wishlist.model.js');
 const { to, ReE, ReS } = require('../utils/utils.service');
 
 
+const findOneWishlist = async (id) => {
+  let err, wishlist;
+
+  [err, wishlist] = await to(Wishlist.findOne({ _id: id }));
+  if (err) return ReE(res, "Error finding Wishlist");
+
+  if (!wishlist) return ReE(res, "Wishlist not found with id: " + id);
+
+  return wishlist;
+}
+
 /**
  * Create Wishlist
  */
@@ -40,14 +51,23 @@ module.exports.getAll = async function (req, res) {
 /**
  * Get One
  */
-module.exports.get = function (req, res) {
+module.exports.getOne = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-  let article = req.article;
-  return ReS(res, { article: article.toWeb() });
+
+  let err, wishlist, id;
+
+  id = req.params.id;
+
+  [err, wishlist] = await to(Wishlist.findOne({ _id: id }));
+  if (err) return ReE(res, "Error finding Wishlist");
+
+  if (!wishlist) return ReE(res, "Wishlist not found with id: " + id);
+
+  return ReS(res, { wishList: wishlist.toWeb() });
 };
 
 /**
- * Update Article
+ * Update Wishlist
  */
 module.exports.update = async function (req, res) {
   let err, article, data;
@@ -63,7 +83,7 @@ module.exports.update = async function (req, res) {
 };
 
 /**
- * Remove Article
+ * Remove Wishlist
  */
 module.exports.remove = async function (req, res) {
   let article, err;
@@ -75,3 +95,4 @@ module.exports.remove = async function (req, res) {
   const response = ReS(res, { message: 'Deleted article' }, 200);
   return response;
 };
+
