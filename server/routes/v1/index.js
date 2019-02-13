@@ -4,6 +4,7 @@ const router = express.Router();
 const ArticlesController = require('../../controllers/article.controller');
 // const WishlistController = require('../controllers/wishlist.controller');
 
+const custom = require('../../middleware/custom.middleware');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -13,10 +14,9 @@ router.get('/', function (req, res, next) {
 /**
  * Articles
  */
-router.post('/articles', ArticlesController.create);       // C
 router.get('/articles', ArticlesController.getAll);        // R
-router.put('/articles', ArticlesController.update);        // U
-router.delete('/articles', ArticlesController.remove);     // D
+router.put('/articles/:article_id', custom.article, ArticlesController.update);        // U
+router.delete('/articles/:article_id', custom.article, ArticlesController.remove);     // D
 
 /**
  * Wishlist
@@ -28,3 +28,4 @@ router.delete('/articles', ArticlesController.remove);     // D
 
 
 module.exports = router;
+

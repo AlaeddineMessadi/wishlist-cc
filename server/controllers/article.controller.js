@@ -1,14 +1,12 @@
 const Article = require('../models/article.model.js');
-
+const { generateArticles, removeAllArticles } = require('../utils/generator.service')
 const { to, ReE, ReS } = require('../utils/utils.service');
 
-console.log(Article)
+
 /**
- * Create 
- * @param {*} req 
- * @param {*} res 
+ * Create Article
  */
-const create = async function (req, res) {
+module.exports.create = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   let err, article;
 
@@ -25,15 +23,16 @@ const create = async function (req, res) {
   if (err) return ReE(res, err, 422);
 
   return ReS(res, { article: article.toWeb() }, 201);
-}
-module.exports.create = create;
+};
 
-const getAll = async function (req, res) {
+/**
+ * Get All
+ */
+module.exports.getAll = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
 
   let err, articles;
   [err, articles] = await to(Article.find());
-
 
   let articles_json = []
   for (let i in articles) {
@@ -41,19 +40,23 @@ const getAll = async function (req, res) {
     articles_json.push(article.toWeb())
   }
   return ReS(res, { articles: articles_json });
-}
-module.exports.getAll = getAll;
+};
 
-const get = function (req, res) {
+/**
+ * Get One
+ */
+module.exports.get = function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   let article = req.article;
   return ReS(res, { article: article.toWeb() });
-}
-module.exports.get = get;
+};
 
-const update = async function (req, res) {
+/**
+ * Update Article
+ */
+module.exports.update = async function (req, res) {
   let err, article, data;
-  article = req.user;
+  article = req.article;
   data = req.body;
   article.set(data);
 
@@ -62,16 +65,18 @@ const update = async function (req, res) {
     return ReE(res, err);
   }
   return ReS(res, { article: article.toWeb() });
-}
-module.exports.update = update;
+};
 
-const remove = async function (req, res) {
+/**
+ * Remove Article
+ */
+module.exports.remove = async function (req, res) {
   let article, err;
   article = req.article;
 
-  [err, article] = await to(article.remove());
+  [err] = await to(article.remove());
   if (err) return ReE(res, 'error occured trying to delete the article');
 
-  return ReS(res, { message: 'Deleted article' }, 204);
-}
-module.exports.remove = remove;
+  const response = ReS(res, { message: 'Deleted article' }, 200);
+  return response;
+};
