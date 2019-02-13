@@ -1,6 +1,6 @@
 const Article = require('../models/article.model');
+const { to, ReE, ReS } = require('../utils/utils.service');
 const casual = require('casual');
-
 
 casual.define('article', function () {
   return {
@@ -12,25 +12,24 @@ casual.define('article', function () {
   };
 });
 
-module.exports.generateArticles = function () {
+module.exports.generateArticles = function (req, res, next) {
   for (let i = 0; i <= 25; i++) {
     const product = new Article(casual.article);
-
     product.save()
       .then(data => {
-        console.log(data)
+        return ReS(res, data, 200)
       }).catch(err => {
-        console.log(err.message || "Something wrong while creating the product.")
+        return ReE(res, err.message || "Something wrong while creating the Article.");
       });
   }
 }
 
-module.exports.removeAllArticles = function () {
+module.exports.removeAllArticles = function (req, res, next) {
   Article.remove({}, function (err) {
     if (err) {
-      console.log(err)
+      return ReE(res, err.message || "Something wrong while creating the product.");
     } else {
-      console.log('success delete all');
+      ReS(res, { message: 'success delete all' }, 200)
     }
   })
 }

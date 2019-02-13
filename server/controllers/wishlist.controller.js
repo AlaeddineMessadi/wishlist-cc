@@ -1,28 +1,23 @@
 const Article = require('../models/article.model.js');
+const Wishlist = require('../models/wishlist.model.js');
+
 
 const { to, ReE, ReS } = require('../utils/utils.service');
 
 
 /**
- * Create Article
+ * Create Wishlist
  */
 module.exports.create = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-  let err, article;
+  let err, wishlist;
 
-  let article_info = req.body;
+  let wishlist_info = req.body;
 
-  // Request validation
-  if (!req.body) {
-    return res.status(400).send({
-      message: "Product content can not be empty"
-    });
-  }
-
-  [err, article] = await to(Article.create(article_info));
+  [err, wishlist] = await to(Wishlist.create(wishlist_info));
   if (err) return ReE(res, err, 422);
 
-  return ReS(res, { article: article.toWeb() }, 201);
+  return ReS(res, { wishlist: wishlist.toWeb() }, 201);
 };
 
 /**
@@ -31,15 +26,15 @@ module.exports.create = async function (req, res) {
 module.exports.getAll = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
 
-  let err, articles;
-  [err, articles] = await to(Article.find());
+  let err, wishlists;
+  [err, wishlists] = await to(Wishlist.find());
 
-  let articles_json = []
-  for (let i in articles) {
-    let article = articles[i];
-    articles_json.push(article.toWeb())
+  let wishlists_json = []
+  for (let i in wishlists) {
+    let wishlist = wishlists[i];
+    wishlists_json.push(wishlist.toWeb())
   }
-  return ReS(res, { articles: articles_json });
+  return ReS(res, { wishlists: wishlists_json });
 };
 
 /**
