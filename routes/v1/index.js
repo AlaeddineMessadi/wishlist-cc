@@ -30,7 +30,7 @@ router.get('/articles', ArticlesController.getAll);
 router.post('/wishlists', WishlistController.create);
 router.get('/wishlists/:wishlist_id', custom.wishlist, WishlistController.getOne);
 router.get('/wishlists', WishlistController.getAll);
-// router.post('/wishlists/:wishlist_id/:article_id', WishlistController.addArticleToWishlist);
+router.post('/wishlists/:wishlist_id/:article_id', custom.wishlist, custom.article, WishlistController.addArticleToWishlist);
 // router.delete('/wishlists/:wishlist_id/:article_id', WishlistController.RemoveArticleToWishlist);
 // router.get('/wishlist/:wishlist_id', WishlistController.getAllArticles);
 
