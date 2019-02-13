@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const ArticlesController = require('../../controllers/article.controller');
-// const WishlistController = require('../controllers/wishlist.controller');
+const WishlistController = require('../../controllers/wishlist.controller');
+
+const fixturesGenerator = require('../../utils/generator.service');
 
 const custom = require('../../middleware/custom.middleware');
 
@@ -12,19 +14,24 @@ router.get('/', function (req, res, next) {
 });
 
 /**
+ * Generate Articles
+ */
+router.get('/generator', fixturesGenerator.generateArticles);
+router.get('/generator/remove', fixturesGenerator.removeAllArticles);
+
+/**
  * Articles
  */
-router.get('/articles', ArticlesController.getAll);        // R
-router.put('/articles/:article_id', custom.article, ArticlesController.update);        // U
-router.delete('/articles/:article_id', custom.article, ArticlesController.remove);     // D
+router.get('/articles', ArticlesController.getAll);
 
 /**
  * Wishlist
  */
-// router.post('/wishlist', WishlistController.create);       // C
-// router.get('/wishlist', WishlistController.get);           // R
-// router.put('/wishlist', WishlistController.update);        // U
-// router.delete('/wishlist', WishlistController.remove);     // D
+router.post('/wishlists', WishlistController.create);
+router.get('/wishlists', WishlistController.getAll);
+// router.post('/wishlists/:wishlist_id/:article_id', WishlistController.addArticleToWishlist);
+// router.delete('/wishlists/:wishlist_id/:article_id', WishlistController.RemoveArticleToWishlist);
+// router.get('/wishlist/:wishlist_id', WishlistController.getAllArticles);
 
 
 module.exports = router;
