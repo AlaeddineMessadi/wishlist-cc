@@ -32,7 +32,7 @@ router.get('/wishlists/:wishlist_id', custom.wishlist, WishlistController.getOne
 router.get('/wishlists/articles/:wishlist_id', WishlistController.getAllArticles);
 router.get('/wishlists', WishlistController.getAll);
 router.post('/wishlists/:wishlist_id/:article_id', custom.wishlist, custom.article, WishlistController.addArticleToWishlist);
-// router.delete('/wishlists/:wishlist_id/:article_id', WishlistController.RemoveArticleToWishlist);
+router.delete('/wishlists/:wishlist_id/:article_id', custom.wishlist, custom.article, WishlistController.removeArticleToWishlist);
 
 
 module.exports = router;
