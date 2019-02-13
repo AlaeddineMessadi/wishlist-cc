@@ -11,7 +11,7 @@ import classes from "./Header.module.scss";
 const header = props => (
   <header className={ classes.header }>
     <Link to="/" className={ classes.text_logo }>Adidas Wishlist</Link>
-    <Link to="/search" className={ classes.search_link }><i class="fa fa-search"></i></Link>
+    <Link to="/search" className={ classes.search_link }><i className="fa fa-search"></i></Link>
   </header>
 );
 

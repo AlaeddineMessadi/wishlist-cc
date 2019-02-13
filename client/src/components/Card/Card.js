@@ -41,7 +41,7 @@ class Card extends Component {
               </div>
               <div className={ classes.details }>
                 <h2>{ name }</h2>
-                <p>Added to your cart</p>
+                <p>Added to your Wishlist</p>
               </div>
               <div
                 className={ classes.remove }
@@ -52,7 +52,8 @@ class Card extends Component {
           </div>
         </div>
         <div className={ classes.inside }>
-          <div className={ classes.icon }><i className={ classes.material_icons }>info_outline</i></div>
+          <div className={ classes.icon }>
+            <i class="fas fa-info-circle"></i></div>
           <div className={ classes.contents }>
             <p>Name: { name }</p>
             <p>Price: { price }</p>

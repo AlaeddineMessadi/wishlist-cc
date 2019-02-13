@@ -81,6 +81,11 @@
           padding: 20px;
           float: right;
           width: calc(70% - 40px);
+          p {
+            padding-top: 5px;
+            font-size: 20px;
+            line-height: 20px;
+          }
         }
         .done {
           width: calc(30% - 2px);
@@ -98,7 +103,7 @@
           width: calc(30% - 1px);
           clear: both;
           border-right: solid thin rgba(255, 255, 255, 0.3);
-          height: 85%;
+          height: 50%;
           background: #BC3B59;
           transition: transform 0.5s, background 0.5s;
           &:hover {
@@ -136,6 +141,7 @@
     overflow: hidden;
     .icon {
       position: absolute;
+      font-size: 28px;
       right: 85px;
       top: 85px;
       color: white;
@@ -146,7 +152,7 @@
       right: 0;
       top: 0;
       border-radius: 0;
-      height: 80%;
+      height: 84%;
       .icon {
         opacity: 0;
         right: 15px;
