@@ -47,18 +47,19 @@ module.exports.getOne = function (req, res) {
 };
 
 /**
- * Update Article
+ * addArticleToWishlist
  */
-module.exports.update = async function (req, res) {
-  let err, article, data;
+module.exports.addArticleToWishlist = async function (req, res) {
+  let err, article, wishlist, data;
   article = req.article;
-  data = req.body;
-  article.set(data);
+  wishlist = req.wishlist;
+
+  if (article.wishlist.indexOf(wishlist._id) < 0) {
+    article.wishlist.push(wishlist._id)
+  }
 
   [err, article] = await to(article.save());
-  if (err) {
-    return ReE(res, err);
-  }
+
   return ReS(res, { article: article.toWeb() });
 };
 
