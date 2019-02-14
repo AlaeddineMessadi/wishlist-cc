@@ -32,12 +32,12 @@ class Card extends Component {
               <div
                 className={ classes.buy }
                 onClick={ () => { this.setState({ clicked: true }) } }>
-                <i class="fas fa-cart-plus"></i>
+                <i className="fas fa-cart-plus"></i>
               </div>
             </div>
             <div className={ classes.right }>
               <div className={ classes.done }>
-                <i class="fas fa-check"></i>
+                <i className="fas fa-check"></i>
               </div>
               <div className={ classes.details }>
                 <h2>{ name }</h2>
@@ -46,7 +46,7 @@ class Card extends Component {
               <div
                 className={ classes.remove }
                 onClick={ () => { this.setState({ clicked: false }) } } >
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
               </div>
             </div>
           </div>
@@ -60,6 +60,7 @@ class Card extends Component {
             <p>SalePrice: { salePrice }</p>
             <p>Reviews: { reviewCount }</p>
             <p>Rating: { reviewRatings }</p>
+            <p>Subtitle: { subTitle }</p>
           </div>
         </div>
       </div>

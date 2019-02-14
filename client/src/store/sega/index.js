@@ -25,6 +25,24 @@ function* createArticleSegaAction(action) {
     }
 }
 
+function* searchArticleSegaAction(action) {
+    try {
+        let articles =[];
+        const response = yield wishlistService.searchAritcle(action.payload);
+        if (response) {
+            articles = response.data.products;
+            console.log(articles)
+            articles.map((item) => {
+                wishlistService.createArticle(item)
+            })
+        }
+        yield put(actions.successSearchAction(articles));
+
+    } catch (error) {
+        yield put(actions.failedAction(error));
+    }
+}
+
 
 function* createWishlistWatcher() {
     yield takeLatest(actionType.CREATE_WISHLIST, createWishlistSegaAction);
@@ -32,11 +50,16 @@ function* createWishlistWatcher() {
 function* createArticleWatcher() {
     yield takeLatest(actionType.CREATE_ARTICLE, createArticleSegaAction);
 }
+function* searchArticleWatcher() {
+    yield takeLatest(actionType.SEARCH_ARTICLE, searchArticleSegaAction);
+}
+
 
 
 export default function* rootSaga() {
     yield all([
         createWishlistWatcher(),
-        createArticleWatcher()
+        createArticleWatcher(),
+        searchArticleWatcher()
     ]);
 }
