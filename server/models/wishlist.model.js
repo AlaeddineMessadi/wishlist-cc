@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 let WishlistSchema = mongoose.Schema({
   name: String,
-  description: String,
   articles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }]
 }, {
     timestamps: true
