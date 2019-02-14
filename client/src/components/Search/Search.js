@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { createArticleAction } from '../../store/actions/actions';
+import { searchArticleAction } from '../../store/actions/actions';
 
 import classes from './Search.module.scss';
 class Search extends Component {
     state = {
-        keyword: "",
-        products: []
+        keyword: ""
     }
 
     inputHandler = async (e) => {
         this.setState({ [e.target.name]: e.target.value })
-
         if (this.state.keyword.length >= 3) {
-            let response = await fetch('https://www.adidas.co.uk/api/search/suggestions/' + this.state.keyword);
-            let result = await response.json();
-            this.props.addToList(result.products);
-            result.products.map((item, index) => { console.log(item); this.props.createArticle(item) })
+            this.props.searchArticle(this.state.keyword);
         }
     }
 
@@ -50,7 +45,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        createArticle: (article) => { dispatch(createArticleAction({ article })) }
+        searchArticle: (keyword) => { dispatch(searchArticleAction(keyword)) }
     }
 };
 

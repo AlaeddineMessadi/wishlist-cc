@@ -40,3 +40,7 @@ enter-server:
 
 destroy:
 	@docker-compose down --rmi local
+
+install:
+	@docker-compose exec -T client_adidas bash -c 'yarn install'
+	@docker-compose exec -T api_adidas bash -c 'yarn install'

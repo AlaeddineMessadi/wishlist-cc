@@ -10,7 +10,7 @@ const server = axios.create({
 
 export const wishlistService = {
     createArticle: async (article) => {
-        return await server.post('/articles', { article });
+        return await server.post('/articles', article );
     },
     createWishlist: async (name) => {
         return await server.post('/wishlists', { name });
@@ -23,6 +23,9 @@ export const wishlistService = {
     },
     removeArticle: async (wishlist_id, article_id) => {
         return await server.post('/wishlists', { wishlist_id, article_id });
+    },
+    searchAritcle: async (keyword) => {
+        return await axios.get('https://www.adidas.co.uk/api/search/suggestions/' + keyword);
     }
 }
 
