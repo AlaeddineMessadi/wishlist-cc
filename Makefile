@@ -4,16 +4,11 @@ help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  all            to setup everything at once (including install, migrations)"
 	@echo "  run            to run everything"
-	@echo "  reset-env      to reset environment to default values"
 	@echo "  restart        to restart everything"
 	@echo "  stop           to stop everything"
 	@echo "  logs           to tail logs of everything"
-	@echo "  install        to install everything"
 	@echo "  enter          to stop everything"
 	@echo "  destroy        to destroy everything (clears docker volumes and images also)"
-	@echo "  test-unit      to run unit tests"
-
-all: run install
 
 build:
 	@docker-compose build
