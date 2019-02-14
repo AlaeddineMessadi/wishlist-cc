@@ -15,13 +15,14 @@ services:
     env_file:
       - ./server/.env
     # Link to containers in another service.
+    container_name: "api_adidas"
     links:
       - mongo_adidas
   mongo_adidas:
     image: "mongo:3.4"
     ports:
       - "27017:27017"
-    container_name: "db_mongodb"
+    container_name: "adidas_mongodb"
   client_adidas:
     build:
       context: client
@@ -33,4 +34,5 @@ services:
     # Expose ports [HOST:CONTAINER}
     ports:
       - "3000:3000"
+    container_name: "client_adidas"
 
