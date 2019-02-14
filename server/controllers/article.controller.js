@@ -9,13 +9,18 @@ const { to, ReE, ReS } = require('../utils/utils.service');
 module.exports.create = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   let err, article;
-  console.log('hey')
+
   let article_info = req.body;
-  console.log(article_info)
-  [err, article] = await to(Article.create(article_info));
+
+  [err, article] = await to(Article.findOne({ productid: article_info.productid }));
+
+  if (!article) {
+    [err, article] = await to(Article.create(article_info));
+  }
+
   if (err) return ReE(res, err, 422);
 
-  return ReS(res, { wishlist: article.toWeb() }, 201);
+  return ReS(res, { article: article.toWeb() }, 201);
 };
 
 /**

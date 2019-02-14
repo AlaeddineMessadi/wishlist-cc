@@ -10,19 +10,14 @@ class Search extends Component {
         products: []
     }
 
-    inputHandler = (e) => {
+    inputHandler = async (e) => {
         this.setState({ [e.target.name]: e.target.value })
 
         if (this.state.keyword.length >= 3) {
-            fetch('https://www.adidas.co.uk/api/search/suggestions/' + this.state.keyword)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((result) => {
-                    this.props.addToList(result.products);
-
-                    result.products.map(item => { this.props.createArticle(item) })
-                });
+            let response = await fetch('https://www.adidas.co.uk/api/search/suggestions/' + this.state.keyword);
+            let result = await response.json();
+            this.props.addToList(result.products);
+            result.products.map((item, index) => { console.log(item); this.props.createArticle(item) })
         }
     }
 
@@ -38,7 +33,7 @@ class Search extends Component {
                         placeholder="What're we looking for ?"
                         onChange={ (e) => { this.inputHandler(e) } } />
                     <span className={ classes.submit }>
-                        <i class="fa fa-search"></i>
+                        <i className="fa fa-search"></i>
                     </span>
                 </form>
 
