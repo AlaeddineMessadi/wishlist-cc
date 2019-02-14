@@ -9,11 +9,14 @@ import { wishlistRequestAction } from '../store/actions/actions';
 
 class WishlistPage extends Component {
   // fetch all Articles from wishlist
-  componentDidMount() {
-    console.log(this.props)
+  componentWillMount() {
+    console.log(this.props.wishlist)
     if (this.props.wishlist.length === 0) {
       console.log('wish article')
-      this.props.getArticles(this.props.wishList_id);
+      console.log(this.props.wishlist_id)
+      // setTimeout(function () { console.log(this.props.wishlist_id) }, 3000);
+
+      this.props.getArticles(this.props.wishlist_id);
     } else {
       console.log(this.props.wishlist)
     }
@@ -25,7 +28,7 @@ class WishlistPage extends Component {
         <h1>Your Wishlist</h1>
         <section>
           {
-            // this.state.wishlist.map((item, index) => (item))
+            [...[], this.props.wishlist].map((item, index) => (console.log(item)))
           }
         </section>
 
@@ -38,13 +41,14 @@ const mapStateToProps = state => ({
   loading: state.loading,
   success: state.success,
   failed: state.failed,
-  wishlist_id: state.wishList_id,
+  wishlist_id: state.wishlist_id,
+  x: state.x,
   wishlist: state.wishlist
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    getArticles: (wishList_id) => { dispatch(wishlistRequestAction(wishList_id)) }
+    getArticles: (wishlist_id) => { console.log(wishlist_id); dispatch(wishlistRequestAction(wishlist_id)) }
   }
 };
 

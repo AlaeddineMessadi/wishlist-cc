@@ -12,20 +12,20 @@ class SearchPage extends Component {
             <div>
                 <h1>Search Articles</h1>
                 <Search />
-                <div style={{paddingTop: "100px"}}>
+                <div style={ { paddingTop: "100px" } }>
                     {
                         this.props.loading ? (
                             <Loader />
                         ) : (
                                 <List items={
-                                    this.props.suggestList.map((item, index) => (<Card key={index}
-                                        name={item.displayName}
-                                        price={item.price}
-                                        salePrice={item.salePrice}
-                                        reviews={item.reviewRating}
-                                        imgUrl={item.imageURL}
-                                        reviewCount={item.reviewCount}
-                                        reviewRatings={item.reviewRatings}
+                                    this.props.suggestList.map((item, index) => (<Card key={ index }
+                                        name={ item.displayName }
+                                        price={ item.price }
+                                        salePrice={ item.salePrice }
+                                        reviews={ item.reviewRating }
+                                        imgUrl={ item.imageURL }
+                                        reviewCount={ item.reviewCount }
+                                        reviewRatings={ item.reviewRatings }
 
                                     />))
                                 }></List>

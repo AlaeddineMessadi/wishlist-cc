@@ -8,7 +8,7 @@ import Main from '../Main/Main';
 import WishlistPage from '../../pages/WishlistPage';
 import SearchPage from '../../pages/SearchPage';
 
-import { createWishlistAction } from '../../store/actions/actions';
+import { createWishlistAction, setWishlistIdAction } from '../../store/actions/actions';
 
 
 class App extends Component {
@@ -16,8 +16,11 @@ class App extends Component {
   componentDidMount() {
     let wishlist_id = this.props.wishList_id || sessionStorage.getItem('wishlist_id');
     if (!wishlist_id) {
+      // create wishList 
       let wishListName = Math.random().toString(36).substring(7);
       this.props.createWishlist({ name: wishListName });
+    } else {
+      this.props.setWishlistId(wishlist_id)
     }
   }
 
@@ -37,16 +40,15 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.loading,
-  success: state.success,
-  failed: state.failed,
   wishlist_id: state.wishList_id
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    createWishlist: (name) => { dispatch(createWishlistAction(name)) }
+    createWishlist: (name) => { dispatch(createWishlistAction(name)) },
+    setWishlistId: (wishList_id) => { dispatch(setWishlistIdAction(wishList_id)) }
   }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+;
