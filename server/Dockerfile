@@ -16,7 +16,7 @@ ADD package.json yarn.lock /app/
 RUN yarn install
 
 # # --pure-lockfile: Don’t generate a yarn.lock lockfile
-# RUN yarn --pure-lockfile
+RUN yarn --pure-lockfile
 
 # copy all file from current dir to /app in container
 COPY . /app/
