@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 let ArticleSchema = mongoose.Schema({
+  productid: { type: String, required: [true, 'productId is required'] },
   displayName: String,
   imageURL: String,
   price: Number,
