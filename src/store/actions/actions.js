@@ -15,37 +15,9 @@ export function wishlistRequestSuccess(payload) {
     }
 }
 
-export function wishlistRequestFailed(payload) {
-    return {
-        type: action.FAILED_WISHLIST,
-        payload,
-    }
-}
-
-export function LogoutRequestAction(payload) {
-    return {
-        type: action.REQUEST_LOGOUT,
-        payload,
-    }
-}
-
 export function addArticleAction(payload) {
     return {
         type: action.ADD_ARTICLE,
-        payload,
-    }
-}
-
-export function addArticleSuccess(payload) {
-    return {
-        type: action.SUCCESS_ADD_ARTICLE,
-        payload,
-    }
-}
-
-export function addArticleFailed(payload) {
-    return {
-        type: action.FAILED_ADD_ARTICLE,
         payload,
     }
 }
@@ -57,16 +29,30 @@ export function removeArticleAction(payload) {
     }
 }
 
-export function removeArticleSuccess(payload) {
+export function successAction(payload) {
     return {
-        type: action.SUCCESS_REMOVE_ARTICLE,
+        type: action.SUCCESS,
         payload,
     }
 }
 
-export function removeArticleFailed(payload) {
+export function failedAction(payload) {
     return {
-        type: action.FAILED_REMOVE_ARTICLE,
+        type: action.FAILED,
+        payload,
+    }
+}
+
+export function createWishlistAction(payload) {
+    return {
+        type: action.CREATE_WISHLIST,
+        payload,
+    }
+}
+
+export function createArticleAction(payload) {
+    return {
+        type: action.CREATE_ARTICLE,
         payload,
     }
 }

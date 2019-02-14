@@ -11,6 +11,7 @@ class WishlistPage extends Component {
     <Card />,
     <Card />]
   }
+
   render() {
     return (
       <div>
