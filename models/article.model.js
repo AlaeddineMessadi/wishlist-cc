@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 
 let ArticleSchema = mongoose.Schema({
-  title: String,
-  description: String,
+  displayName: String,
+  imageURL: String,
   price: Number,
-  image: String,
-  brand: String,
+  salePrice: Number,
+  reviewCount: Number,
+  reviewRating: Number,
+  subTitle: String,
 }, {
     timestamps: true
   });
