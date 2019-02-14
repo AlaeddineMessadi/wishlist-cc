@@ -4,27 +4,34 @@ import { connect } from 'react-redux';
 import Search from '../components/Search/Search';
 import Card from '../components/Card/Card';
 import List from '../components/List/List';
+import Loader from '../components/Loader/Loader';
 
 class SearchPage extends Component {
     render() {
-        console.log(this.props.suggestList)
         return (
             <div>
                 <h1>Search Articles</h1>
                 <Search />
-                <br />
-                <List items={
-                    this.props.suggestList.map((item, index) => (<Card key={ index }
-                        name={ item.displayName }
-                        price={ item.price }
-                        salePrice={ item.salePrice }
-                        reviews={ item.reviewRating }
-                        imgUrl={ item.imageURL }
-                        reviewCount={ item.reviewCount }
-                        reviewRatings={ item.reviewRatings }
+                <div style={{paddingTop: "100px"}}>
+                    {
+                        this.props.loading ? (
+                            <Loader />
+                        ) : (
+                                <List items={
+                                    this.props.suggestList.map((item, index) => (<Card key={index}
+                                        name={item.displayName}
+                                        price={item.price}
+                                        salePrice={item.salePrice}
+                                        reviews={item.reviewRating}
+                                        imgUrl={item.imageURL}
+                                        reviewCount={item.reviewCount}
+                                        reviewRatings={item.reviewRatings}
 
-                    />))
-                }></List>
+                                    />))
+                                }></List>
+                            )
+                    }
+                </div>
             </div>
         )
     }

@@ -12,7 +12,7 @@ class Search extends Component {
     inputHandler = async (e) => {
         this.setState({ [e.target.name]: e.target.value })
         if (this.state.keyword.length >= 3) {
-            this.props.searchArticle(this.state.keyword);
+            setTimeout(() => { this.props.searchArticle(this.state.keyword); }, 1000);
         }
     }
 

@@ -31,7 +31,7 @@ function* searchArticleSegaAction(action) {
         const response = yield wishlistService.searchAritcle(action.payload);
         if (response) {
             articles = response.data.products;
-            console.log(articles)
+            
             articles.map((item) => {
                 wishlistService.createArticle(item)
             })
