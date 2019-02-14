@@ -55,16 +55,13 @@ module.exports.getAllArticles = async function (req, res) {
   let wishlist_id, err, wishlist, article;
   wishlist_id = req.params.wishlist_id;
 
-  [err, wishlist] = await to(Wishlist.findOne({ _id: wishlist_id }));
-  // [err, article] = await to(Article.find({}).populate('articles'));
+  [err, wishlist] = await to(Wishlist.findOne({ _id: wishlist_id }).populate('articles'));
 
-  console.log(article)
   if (err) return ReE(res, "Error finding Wishlist");
 
-  if (!article) return ReE(res, "Wishlist not found with id: " + wishlist_id);
+  if (!wishlist) return ReE(res, "Wishlist not found with id: " + wishlist_id);
 
-  // return ReS(res, { article: article.toWeb() });
-  return ReS(res, { wishlist: wishlist.toWeb() });
+  return ReS(res, { id: wishlist_id, articles: wishlist.articles });
 };
 
 
@@ -77,13 +74,13 @@ module.exports.addArticleToWishlist = async function (req, res) {
   article = req.article;
   wishlist = req.wishlist;
 
-  if (article.wishlist.indexOf(wishlist._id) < 0) {
-    article.wishlist.push(wishlist._id)
+  if (wishlist.articles.indexOf(article._id) < 0) {
+    wishlist.articles.push(article._id)
   }
 
-  [err, article] = await to(article.save());
+  [err, wishlist] = await to(wishlist.save());
 
-  return ReS(res, { article: article.toWeb() });
+  return ReS(res, { wishlist: wishlist.toWeb() });
 };
 
 
