@@ -22,7 +22,9 @@ router.get('/generator/remove', fixturesGenerator.removeAllArticles);
 /**
  * Articles
  */
+router.post('/articles', ArticlesController.create);
 router.get('/articles', ArticlesController.getAll);
+
 
 /**
  * Wishlist
