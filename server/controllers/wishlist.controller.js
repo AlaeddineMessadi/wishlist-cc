@@ -52,7 +52,7 @@ module.exports.getOne = function (req, res) {
 module.exports.getAllArticles = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
 
-  let wishlist_id, err, wishlist, article;
+  let wishlist_id, err, wishlist;
   wishlist_id = req.params.wishlist_id;
 
   [err, wishlist] = await to(Wishlist.findOne({ _id: wishlist_id }).populate('articles'));
@@ -63,8 +63,6 @@ module.exports.getAllArticles = async function (req, res) {
 
   return ReS(res, { id: wishlist_id, articles: wishlist.articles });
 };
-
-
 
 /**
  * addArticleToWishlist
