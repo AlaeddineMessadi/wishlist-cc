@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import Header from '../../components/Header/Header';
 import Main from '../../components/Main/Main';
+
+import HomePage from '../../pages/HomePage';
+import SearchPage from '../../pages/SearchPage';
 
 import classes from './App.module.scss';
 
@@ -11,12 +15,11 @@ class App extends Component {
       <React.Fragment>
         <Header />
         <Main>
-          <ul>
-            <li><h1>Heyylo</h1></li>
-            <li><h1>Heyylo</h1></li>
-            <li><h1>Heyylo</h1></li>
-            <li><h1>Heyylo</h1></li>
-          </ul>
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/search' component={SearchPage} />
+            <Route exact path='/wishlist' component={HomePage} />
+          </Switch>
         </Main>
       </React.Fragment>
     );
