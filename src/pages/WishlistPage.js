@@ -15,7 +15,7 @@ class WishlistPage extends Component {
   render() {
     return (
       <div>
-        <h1>Wishlist</h1>
+        <h1>Your Wishlist</h1>
         <section>
           {
             this.state.wishlist.map((item, index) => (item))

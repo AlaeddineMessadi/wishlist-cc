@@ -56,3 +56,17 @@ export function createArticleAction(payload) {
         payload,
     }
 }
+
+export function searchArticleAction(payload) {
+    return {
+        type: action.SEARCH_ARTICLE,
+        payload,
+    }
+}
+
+export function successSearchAction(payload) {
+    return {
+        type: action.SUCCESS_SEARCH_ARTICLE,
+        payload,
+    }
+}
