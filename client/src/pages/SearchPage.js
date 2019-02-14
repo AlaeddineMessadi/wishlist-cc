@@ -26,8 +26,12 @@ class SearchPage extends Component {
                         this.state.list.map((item, index) => (<Card key={index}
                             name={item.displayName}
                             price={item.price}
+                            salePrice={item.salePrice}
                             reviews={item.reviewRating}
                             imgUrl={item.imageURL}
+                            reviewCount={item.reviewCount}
+                            reviewRatings={item.reviewRatings}
+
                         />))
                     }
                 </div>
