@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { createArticleAction } from '../../store/actions/actions';
 
 import classes from './Search.module.scss';
 class Search extends Component {
@@ -15,8 +18,10 @@ class Search extends Component {
                 .then((response) => {
                     return response.json();
                 })
-                .then((myJson) => {
-                    this.props.addToList(myJson.products);
+                .then((result) => {
+                    this.props.addToList(result.products);
+
+                    result.products.map(item => { this.props.createArticle(item) })
                 });
         }
     }
@@ -32,8 +37,7 @@ class Search extends Component {
                         type="text"
                         placeholder="What're we looking for ?"
                         onChange={ (e) => { this.inputHandler(e) } } />
-                    <span className={ classes.submit }
-                        onClick={ (e) => { this.props.onClick() } }>
+                    <span className={ classes.submit }>
                         <i class="fa fa-search"></i>
                     </span>
                 </form>
@@ -43,4 +47,16 @@ class Search extends Component {
     }
 }
 
-export default Search;
+const mapStateToProps = state => ({
+    loading: state.loading,
+    success: state.success,
+    failed: state.failed,
+})
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createArticle: (article) => { dispatch(createArticleAction({ article })) }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
