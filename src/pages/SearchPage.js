@@ -18,19 +18,14 @@ class SearchPage extends Component {
                             <Loader />
                         ) : (
                                 <List items={
-                                    this.props.suggestList.map((item, index) => (
-                                        <Card key={ index }
-                                            wishlist_id={ this.props.wishlist_id }
-                                            article_id={ item.id }
-                                            name={ item.displayName }
-                                            price={ item.price }
-                                            salePrice={ item.salePrice }
-                                            reviews={ item.reviewRating }
-                                            imgUrl={ item.imageURL }
-                                            reviewCount={ item.reviewCount }
-                                            reviewRatings={ item.reviewRatings }
-                                        />
-                                    ))
+                                    this.props.suggestList.map(
+                                        (item, index) => (
+                                            <Card
+                                                key={ index }
+                                                article={ item }
+                                            />
+                                        )
+                                    )
                                 }></List>
                             )
                     }

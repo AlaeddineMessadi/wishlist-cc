@@ -26,15 +26,7 @@ class WishlistPage extends Component {
           {
             this.props.wishlist.map((item, index) => (
               <Card key={ index }
-                wishlist_id={ this.props.wishlist_id }
-                article_id={ item._id }
-                name={ item.displayName }
-                price={ item.price }
-                salePrice={ item.salePrice }
-                reviews={ item.reviewRating }
-                imgUrl={ item.imageURL }
-                reviewCount={ item.reviewCount }
-                reviewRatings={ item.reviewRatings }
+                article={ item }
                 addedToWishlist={ true }
               />
             ))
