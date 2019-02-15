@@ -9,7 +9,7 @@ class Card extends Component {
   state = { clicked: false }
 
   render() {
-    const { name, imgUrl, price, salePrice, reviewCount, reviewRatings, subTitle } = this.props;
+    const { name, imgUrl, price, salePrice, reviewCount, reviewRatings, subTitle, wishlist_id, article_id } = this.props;
 
     return (
       <div className={ classes.wrapper }>
@@ -31,7 +31,10 @@ class Card extends Component {
               </div>
               <div
                 className={ classes.buy }
-                onClick={ () => { this.setState({ clicked: true }) } }>
+                onClick={ () => {
+                  this.setState({ clicked: true });
+                  this.props.addArticle(wishlist_id, article_id);
+                } }>
                 <i className="fas fa-cart-plus"></i>
               </div>
             </div>
@@ -45,7 +48,10 @@ class Card extends Component {
               </div>
               <div
                 className={ classes.remove }
-                onClick={ () => { this.setState({ clicked: false }) } } >
+                onClick={ () => {
+                  this.setState({ clicked: false });
+                  this.props.addArticle(wishlist_id, article_id);
+                } } >
                 <i className="fas fa-times"></i>
               </div>
             </div>
