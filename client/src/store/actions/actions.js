@@ -77,3 +77,10 @@ export function successCreateWishlistAction(payload) {
         payload,
     }
 }
+
+export function setWishlistIdAction(payload) {
+    return {
+        type: action.SET_WISHLIST_ID,
+        payload,
+    }
+}
