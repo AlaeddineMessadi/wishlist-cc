@@ -1,10 +1,10 @@
 import {
     REQUEST_WISHLIST, SUCCESS_WISHLIST,
     ADD_ARTICLE, REMOVE_ARTICLE, SUCCESS, FAILED,
-    SEARCH_ARTICLE, SUCCESS_SEARCH_ARTICLE
+    SEARCH_ARTICLE, SUCCESS_SEARCH_ARTICLE, SUCCESS_CREATE_WISHLIST
 } from '../actions/actionTypes';
 
-const intialState = {suggestList:[]}
+const intialState = { suggestList: [], wishlist: [] }
 export const reducer = (state = intialState, action) => {
     switch (action.type) {
         case SEARCH_ARTICLE:
@@ -43,7 +43,12 @@ export const reducer = (state = intialState, action) => {
             return {
                 ...state,
                 loading: false,
-                success: true
+                success: true,
+            }
+        case SUCCESS_CREATE_WISHLIST:
+            return {
+                ...state,
+                wishlist_id: action.payload
             }
         case FAILED:
             return {

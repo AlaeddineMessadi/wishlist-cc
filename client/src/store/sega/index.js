@@ -9,8 +9,12 @@ import { wishlistService } from '../services/wishlist.service';
 function* createWishlistSegaAction(action) {
     try {
         const response = yield wishlistService.createWishlist(action.payload.name);
+        const wishlist_id = response.data.wishlist.id;
+        // set wishlist_id to sessionStorage
+        sessionStorage.setItem('wishlist_id', wishlist_id)
 
-        sessionStorage.setItem('wishlist_id',response.data.wishlist.id)
+        yield put(actions.successCreateWishlistAction(wishlist_id));
+
         yield put(actions.successAction());
     } catch (error) {
         yield put(actions.failedAction(error));
@@ -28,11 +32,11 @@ function* createArticleSegaAction(action) {
 
 function* searchArticleSegaAction(action) {
     try {
-        let articles =[];
+        let articles = [];
         const response = yield wishlistService.searchAritcle(action.payload);
         if (response) {
             articles = response.data.products;
-            
+
             articles.map((item) => {
                 wishlistService.createArticle(item)
             })
@@ -44,17 +48,31 @@ function* searchArticleSegaAction(action) {
     }
 }
 
+function* requestWishlistSegaAction(action) {
+    try {
+        let wishlist = [];
+        const response = yield wishlistService.getAllArticles(action.payload);
+        if (response) {
+            wishlist = response.data.wishlist;
+        }
+        yield put(actions.wishlistRequestSuccess(wishlist));
 
-function* createWishlistWatcher() {
+    } catch (error) {
+        yield put(actions.failedAction(error));
+    }
+}
+
+function* wishlistWatcher() {
     yield takeLatest(actionType.CREATE_WISHLIST, createWishlistSegaAction);
     yield takeLatest(actionType.CREATE_ARTICLE, createArticleSegaAction);
     yield takeLatest(actionType.SEARCH_ARTICLE, searchArticleSegaAction);
+    yield takeLatest(actionType.REQUEST_WISHLIST, requestWishlistSegaAction);
 }
 
 
 
 export default function* rootSaga() {
     yield all([
-        createWishlistWatcher()
+        wishlistWatcher()
     ]);
 }
