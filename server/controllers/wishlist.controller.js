@@ -53,17 +53,25 @@ module.exports.getOne = async function (req, res) {
  */
 module.exports.getAllArticles = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-
+  console.log('it is here')
   let wishlist_id, err, wishlist;
   wishlist_id = req.params.wishlist_id;
 
-  [err, wishlist] = await to(Wishlist.findOne({ _id: wishlist_id }).populate('articles'));
+  if (!wishlist_id) {
+    console.log('11111')
+    [err, wishlist] = await createWishlist(req.body);
+    if (err) return ReE(res, err, 422);
+  } else {
+    console.log('2222')
 
-  if (err) return ReE(res, "Error finding Wishlist");
+    [err, wishlist] = await to(Wishlist.findOne({ _id: wishlist_id }).populate('articles'));
 
-  if (!wishlist) return ReE(res, "Wishlist not found with id: " + wishlist_id);
+    if (err) return ReE(res, "Error finding Wishlist");
 
-  return ReS(res, { id: wishlist_id, articles: wishlist.articles });
+    if (!wishlist) return ReE(res, "Wishlist not found with id: " + wishlist_id);
+  }
+
+  return ReS(res, { id: wishlist._id, articles: wishlist.articles });
 };
 
 /**
