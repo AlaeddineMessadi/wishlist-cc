@@ -4,8 +4,8 @@ import {
     SEARCH_ARTICLE, SUCCESS_SEARCH_ARTICLE, SET_WISHLIST_ID
 } from '../actions/actionTypes';
 
-let wishlist_id = sessionStorage.getItem('wishlist_id') || '';
-
+let wishlist_id = sessionStorage.getItem('wishlist_id');
+if (wishlist_id === 'undefined') sessionStorage.removeItem('wishlist_id');
 const initialState = {
     suggestList: [],
     wishlist: [],
@@ -36,10 +36,14 @@ export const reducer = (state = initialState, action) => {
                 wishlist: []
             }
         case SUCCESS_WISHLIST:
+            if (!state.wishlist_id) {
+                // set wishlist_id to sessionStorage
+                sessionStorage.setItem('wishlist_id', action.payload.id)
+            }
             return {
                 ...state,
                 loading: false,
-                wishlist: action.payload
+                wishlist: action.payload.articles
             }
         case ADD_ARTICLE:
             return {

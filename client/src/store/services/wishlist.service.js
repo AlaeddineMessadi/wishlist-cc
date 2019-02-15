@@ -15,7 +15,8 @@ export const wishlistService = {
     createWishlist: async (name) => {
         return await server.post('/wishlists', { name });
     },
-    getAllArticles: async (wishlist_id) => {
+    getAllArticles: async (wishlist_id = 11111) => {
+        console.log(wishlist_id)
         return await server.get(`/wishlists/articles/${wishlist_id}`);
     },
     addArticle: async ({ wishlist_id, article }) => {
