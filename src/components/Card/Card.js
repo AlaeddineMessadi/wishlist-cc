@@ -53,7 +53,7 @@ class Card extends Component {
         </div>
         <div className={ classes.inside }>
           <div className={ classes.icon }>
-            <i class="fas fa-info-circle"></i></div>
+            <i className="fas fa-info-circle"></i></div>
           <div className={ classes.contents }>
             <p>Name: { name }</p>
             <p>Price: { price }</p>

@@ -15,6 +15,7 @@ export const reducer = (state = intialState, action) => {
         case SUCCESS_SEARCH_ARTICLE:
             return {
                 ...state,
+                loading: false,
                 suggestList: action.payload,
             }
         case REQUEST_WISHLIST:

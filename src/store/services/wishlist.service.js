@@ -9,8 +9,8 @@ const server = axios.create({
 
 
 export const wishlistService = {
-    createArticle: async (article) => {
-        return await server.post('/articles', article );
+    createArticle: async (articles) => {
+        return await server.post('/articles', articles );
     },
     createWishlist: async (name) => {
         return await server.post('/wishlists', { name });
