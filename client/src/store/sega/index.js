@@ -44,8 +44,9 @@ function* requestWishlistSegaAction(action) {
     try {
         let wishlist = [];
         const response = yield wishlistService.getAllArticles(action.payload);
+
         if (response) {
-            wishlist = response.data.wishlist;
+            wishlist = response.data.articles;
         }
         yield put(actions.wishlistRequestSuccess(wishlist));
 

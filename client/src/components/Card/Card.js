@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import classes from './Card.module.scss';
+import { addArticleAction, removeArticleAction } from '../../store/actions/actions';
 
 const defautlImage = 'https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg';
 
@@ -8,8 +9,15 @@ const defautlImage = 'https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3
 class Card extends Component {
   state = { clicked: false }
 
+  componentDidMount() {
+    this.setState({ clicked: this.props.addedToWishlist ? true : false });
+  }
+
   render() {
-    const { name, imgUrl, price, salePrice, reviewCount, reviewRatings, subTitle, wishlist_id, article_id } = this.props;
+    const {
+      name, imgUrl, price, salePrice, reviewCount,
+      reviewRatings, subTitle, wishlist_id, article_id
+    } = this.props;
 
     return (
       <div className={ classes.wrapper }>
@@ -50,7 +58,7 @@ class Card extends Component {
                 className={ classes.remove }
                 onClick={ () => {
                   this.setState({ clicked: false });
-                  this.props.addArticle(wishlist_id, article_id);
+                  this.props.removeArticle(wishlist_id, article_id);
                 } } >
                 <i className="fas fa-times"></i>
               </div>
@@ -74,5 +82,11 @@ class Card extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    addArticle: (wishlist_id, article_id) => { dispatch(addArticleAction({ wishlist_id, article_id })) },
+    removeArticle: (wishlist_id, article_id) => { dispatch(removeArticleAction({ wishlist_id, article_id })) }
+  }
+};
 
-export default Card
+export default connect(null, mapDispatchToProps)(Card);

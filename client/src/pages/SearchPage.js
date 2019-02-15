@@ -6,8 +6,6 @@ import Card from '../components/Card/Card';
 import List from '../components/List/List';
 import Loader from '../components/Loader/Loader';
 
-import { addArticleAction, removeArticleAction } from '../store/actions/actions';
-
 class SearchPage extends Component {
     render() {
         return (
@@ -20,19 +18,19 @@ class SearchPage extends Component {
                             <Loader />
                         ) : (
                                 <List items={
-                                    this.props.suggestList.map((item, index) => (<Card key={ index }
-                                        wishlist_id={ this.props.wishlist_id }
-                                        article_id={ item.id }
-                                        name={ item.displayName }
-                                        price={ item.price }
-                                        salePrice={ item.salePrice }
-                                        reviews={ item.reviewRating }
-                                        imgUrl={ item.imageURL }
-                                        reviewCount={ item.reviewCount }
-                                        reviewRatings={ item.reviewRatings }
-                                        addArticle={ this.props.addArticle }
-                                        removeArticle={ this.props.removeArticle }
-                                    />))
+                                    this.props.suggestList.map((item, index) => (
+                                        <Card key={ index }
+                                            wishlist_id={ this.props.wishlist_id }
+                                            article_id={ item.id }
+                                            name={ item.displayName }
+                                            price={ item.price }
+                                            salePrice={ item.salePrice }
+                                            reviews={ item.reviewRating }
+                                            imgUrl={ item.imageURL }
+                                            reviewCount={ item.reviewCount }
+                                            reviewRatings={ item.reviewRatings }
+                                        />
+                                    ))
                                 }></List>
                             )
                     }
@@ -50,11 +48,4 @@ const mapStateToProps = state => ({
     suggestList: state.suggestList
 })
 
-const mapDispatchToProps = dispatch => {
-    return {
-        addArticle: (wishlist_id, article_id) => { dispatch(addArticleAction(wishlist_id, article_id)) },
-        removeArticle: (wishlist_id, article_id) => { dispatch(removeArticleAction(wishlist_id, article_id)) }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
+export default connect(mapStateToProps, null)(SearchPage);
