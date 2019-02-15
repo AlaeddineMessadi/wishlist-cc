@@ -1,11 +1,9 @@
-
 @import './reset.css';
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
 @import url(https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700);
-
 body {
-  color: #231900;;
+  color: #231900;
+  ;
   font-family: sans-serif;
   font-size: 1rem;
   line-height: 1;
@@ -13,43 +11,35 @@ body {
 }
 
 h1 {
-	color: #231900;
-	font-family: 'Open Sans';
-	font-size: 94px;
-	font-weight: 800;
-	letter-spacing: -2px;
-	line-height: 84px;
-	margin-bottom: 72px;
+  color: #231900;
+  font-family: 'Open Sans';
+  font-size: 94px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 84px;
+  margin-bottom: 72px;
   text-transform: uppercase;
   text-align: center;
 }
 
 p {
-	color: #231900;
-	font-family: 'Crimson Text';
-	font-size: 34px;
-	font-weight: 500;
-	line-height: 48px;
-	margin-bottom: 48px;
-	max-width: 650px;
+  color: #231900;
+  font-family: 'Crimson Text';
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 48px;
+  margin-bottom: 48px;
+  max-width: 650px;
 }
 
-
 a {
-	color: #231900;	
+  color: #231900;
 }
 
 @media only screen and (max-width: 480px) {
   h1 {
     font-size: 47px;
     line-height: 48px;
-    margin-bottom: 0;
+    margin-bottom: 30px;
   }
 }
-// @media only screen and (min-width: 768px) {
-//   h1 {
-//     font-size: 47px;
-//     line-height: 24px;
-//     margin-bottom: 24px;
-//   }
-// }
