@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { searchArticleAction } from '../../store/actions/actions';
+import { searchArticleAction, addArticleAction, removeArticleAction } from '../../store/actions/actions';
 
 import classes from './Search.module.scss';
+
 class Search extends Component {
     state = {
         keyword: ""
@@ -41,11 +42,14 @@ const mapStateToProps = state => ({
     loading: state.loading,
     success: state.success,
     failed: state.failed,
+    wishlist_id: state.wishlist_id
 })
 
 const mapDispatchToProps = dispatch => {
     return {
-        searchArticle: (keyword) => { dispatch(searchArticleAction(keyword)) }
+        searchArticle: (keyword) => { dispatch(searchArticleAction(keyword)) },
+        addArticle: (wishlist_id, article_id) => { dispatch(addArticleAction(wishlist_id, article_id)) },
+        removeArticle: (wishlist_id, article_id) => { dispatch(removeArticleAction(wishlist_id, article_id)) }
     }
 };
 

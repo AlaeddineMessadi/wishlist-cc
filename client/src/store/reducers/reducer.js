@@ -39,12 +39,10 @@ export const reducer = (state = intialState, action) => {
         case ADD_ARTICLE:
             return {
                 ...state,
-                loading: true,
             }
         case REMOVE_ARTICLE:
             return {
                 ...state,
-                loading: true,
             }
         case SUCCESS:
             return {
