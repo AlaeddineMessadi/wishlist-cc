@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Header from '../../components/Header/Header';
 import Main from '../../components/Main/Main';
@@ -7,9 +8,21 @@ import Main from '../../components/Main/Main';
 import Wishlist from '../../pages/WishlistPage';
 import SearchPage from '../../pages/SearchPage';
 
-import classes from './App.module.scss';
+import { createWishlistAction } from '../../store/actions/actions';
+
 
 class App extends Component {
+
+  componentDidMount() {
+    let wishlist_id = sessionStorage.getItem('wishlist_id');
+    if(!wishlist_id){
+      let wishListName = Math.random().toString(36).substring(7);
+
+      this.props.createWishlist({name: wishListName});
+    }
+
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -18,7 +31,6 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={ Wishlist } />
             <Route exact path='/search' component={ SearchPage } />
-            <Route exact path='/wishlist' component={ Wishlist } />
           </Switch>
         </Main>
       </React.Fragment>
@@ -26,4 +38,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+    loading: state.loading,
+    success: state.success,
+    failed: state.failed,
+})
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createWishlist: (name) => { dispatch(createWishlistAction(name)) }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
