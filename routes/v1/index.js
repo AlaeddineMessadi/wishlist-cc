@@ -30,7 +30,7 @@ router.get('/articles', ArticlesController.getAll);
  * Wishlist
  */
 router.post('/wishlists', WishlistController.create);
-router.get('/wishlists/:wishlist_id', custom.wishlist, WishlistController.getOne);
+router.get('/wishlists/:wishlist_id', WishlistController.getOne);
 router.get('/wishlists/articles/:wishlist_id', WishlistController.getAllArticles);
 router.get('/wishlists', WishlistController.getAll);
 router.post('/wishlists/:wishlist_id/:article_id', custom.wishlist, custom.article, WishlistController.addArticleToWishlist);
