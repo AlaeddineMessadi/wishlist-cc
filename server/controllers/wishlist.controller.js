@@ -1,5 +1,6 @@
 const Wishlist = require('../models/wishlist.model.js');
-const { createWishlist, getWishlists, getAllArticles } = require('../services/wishlist.service');
+const { createWishlist, getWishlists } = require('../services/wishlist.service');
+const { createArticle, getArticles } = require('../services/article.service')
 
 const { to, ReE, ReS } = require('../utils/utils.service');
 
@@ -70,9 +71,11 @@ module.exports.getAllArticles = async function (req, res) {
  */
 module.exports.addArticleToWishlist = async function (req, res) {
   let err, article, wishlist, data;
-  article = req.article;
+
+  article = req.body.article;
   wishlist = req.wishlist;
-  /** create article and move it as a service*/
+  /** find or create article */
+  [err, article] = await createArticle(article);
 
   /** assign it to wish list */
   if (wishlist.articles.indexOf(article._id) < 0) {
