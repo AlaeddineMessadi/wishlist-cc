@@ -10,12 +10,7 @@ import { wishlistRequestAction } from '../store/actions/actions';
 class WishlistPage extends Component {
   // fetch all Articles from wishlist
   componentWillMount() {
-    console.log(this.props.wishlist)
-    if (this.props.wishlist.length === 0) {
-      this.props.getArticles(this.props.wishlist_id);
-    } else {
-      console.log(this.props.wishlist)
-    }
+    this.props.getArticles(this.props.wishlist_id);
   }
 
   render() {

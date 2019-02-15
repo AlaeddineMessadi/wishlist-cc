@@ -43,13 +43,6 @@ export function failedAction(payload) {
     }
 }
 
-export function createWishlistAction(payload) {
-    return {
-        type: action.CREATE_WISHLIST,
-        payload,
-    }
-}
-
 export function createArticleAction(payload) {
     return {
         type: action.CREATE_ARTICLE,
