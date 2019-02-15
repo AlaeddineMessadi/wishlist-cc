@@ -40,7 +40,7 @@ module.exports.getAll = async function (req, res) {
  */
 module.exports.getOne = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-
+  console.log('here')
   let wishlist = req.wishlist;
   if (!wishlist) return ReE(res, "Error finding Wishlist");
 
@@ -56,7 +56,7 @@ module.exports.getAllArticles = async function (req, res) {
   let wishlist_id, err, wishlist;
   wishlist_id = req.params.wishlist_id;
 
-  [err, wishlist] = await to(Wishlist.find({ _id: wishlist_id }).populate('articles'));
+  [err, wishlist] = await to(Wishlist.findOne({ _id: wishlist_id }).populate('articles'));
 
   if (err) return ReE(res, "Error finding Wishlist");
 
@@ -88,7 +88,7 @@ module.exports.addArticleToWishlist = async function (req, res) {
  * removeArticleToWishlist
  */
 module.exports.removeArticleToWishlist = async function (req, res) {
-  let err, article, wishlist, data;
+  let err, article, wishlist;
   article = req.article;
   wishlist = req.wishlist;
 
