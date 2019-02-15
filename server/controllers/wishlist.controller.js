@@ -71,6 +71,9 @@ module.exports.addArticleToWishlist = async function (req, res) {
   let err, article, wishlist, data;
   article = req.article;
   wishlist = req.wishlist;
+  /** create article and move it as a service*/
+
+  /** assign it to wish list */
 
   if (wishlist.articles.indexOf(article._id) < 0) {
     wishlist.articles.push(article._id)

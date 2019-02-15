@@ -32,16 +32,8 @@ function* createArticleSegaAction(action) {
 
 function* searchArticleSegaAction(action) {
     try {
-        let articles = [];
         const response = yield wishlistService.searchAritcle(action.payload);
-        if (response) {
-            articles = response.data.products;
-
-            articles.map((item) => {
-                wishlistService.createArticle(item)
-            })
-        }
-        yield put(actions.successSearchAction(articles));
+        yield put(actions.successSearchAction(response.data.products));
 
     } catch (error) {
         yield put(actions.failedAction(error));
@@ -62,11 +54,37 @@ function* requestWishlistSegaAction(action) {
     }
 }
 
+function* addArticleSegaAction(action) {
+    console.log(action);
+    try {
+        const response = yield wishlistService.addArticle(action.payload);
+        yield put(actions.successAction());
+
+    } catch (error) {
+        yield put(actions.failedAction(error));
+    }
+}
+
+function* removeArticleSegaAction(action) {
+    console.log(action);
+    try {
+        const response = yield wishlistService.removeArticle(action.payload);
+        yield put(actions.successAction());
+
+    } catch (error) {
+        yield put(actions.failedAction(error));
+    }
+}
+
+
 function* wishlistWatcher() {
     yield takeLatest(actionType.CREATE_WISHLIST, createWishlistSegaAction);
     yield takeLatest(actionType.CREATE_ARTICLE, createArticleSegaAction);
     yield takeLatest(actionType.SEARCH_ARTICLE, searchArticleSegaAction);
     yield takeLatest(actionType.REQUEST_WISHLIST, requestWishlistSegaAction);
+    yield takeLatest(actionType.ADD_ARTICLE, addArticleSegaAction);
+    yield takeLatest(actionType.REMOVE_ARTICLE, removeArticleSegaAction);
+
 }
 
 
