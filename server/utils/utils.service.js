@@ -10,14 +10,22 @@ module.exports.to = async (promise) => {
 };
 
 module.exports.ReE = function (res, err, code) { // Error Web Response
-  if (typeof err == 'object' && typeof err.message != 'undefined') {
-    err = err.message;
-  }
+  err = errorHandler(err);
 
   if (typeof code !== 'undefined') res.statusCode = code;
 
   return res.json({ success: false, error: err });
 };
+
+function errorHandler(err) { // Throw Exception
+  if (typeof err == 'object' && typeof err.message != 'undefined') {
+    err = err.message;
+  }
+  console.error(err);
+
+  return err;
+};
+module.exports.TeE = errorHandler;
 
 module.exports.ReS = function (res, data, code) { // Success Web Response
   let send_data = { success: true };

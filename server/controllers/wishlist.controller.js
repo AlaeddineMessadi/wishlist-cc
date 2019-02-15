@@ -1,6 +1,5 @@
-const Article = require('../models/article.model.js');
 const Wishlist = require('../models/wishlist.model.js');
-
+const { createWishlist, getWishlists, getAllArticles } = require('../services/wishlist.service');
 
 const { to, ReE, ReS } = require('../utils/utils.service');
 
@@ -12,9 +11,7 @@ module.exports.create = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   let err, wishlist;
 
-  let wishlist_info = req.body;
-
-  [err, wishlist] = await to(Wishlist.create(wishlist_info));
+  [err, wishlist] = await createWishlist(req.body);
   if (err) return ReE(res, err, 422);
 
   return ReS(res, { wishlist: wishlist.toWeb() }, 201);
@@ -25,9 +22,10 @@ module.exports.create = async function (req, res) {
  */
 module.exports.getAll = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-
   let err, wishlists;
-  [err, wishlists] = await to(Wishlist.find());
+  [err, wishlists] = await getWishlists();
+
+  if (err) return ReE(res, err, 422);
 
   let wishlists_json = []
   for (let i in wishlists) {
@@ -40,14 +38,17 @@ module.exports.getAll = async function (req, res) {
 /**
  * Get One
  */
-module.exports.getOne = function (req, res) {
+module.exports.getOne = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
+
   let wishlist = req.wishlist;
+  if (!wishlist) return ReE(res, "Error finding Wishlist");
+
   return ReS(res, { wishlist: wishlist.toWeb() });
 };
 
 /**
- * Get One
+ * Get all articles 
  */
 module.exports.getAllArticles = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
@@ -55,7 +56,7 @@ module.exports.getAllArticles = async function (req, res) {
   let wishlist_id, err, wishlist;
   wishlist_id = req.params.wishlist_id;
 
-  [err, wishlist] = await to(Wishlist.findOne({ _id: wishlist_id }).populate('articles'));
+  [err, wishlist] = await to(Wishlist.find({ _id: wishlist_id }).populate('articles'));
 
   if (err) return ReE(res, "Error finding Wishlist");
 
@@ -74,7 +75,6 @@ module.exports.addArticleToWishlist = async function (req, res) {
   /** create article and move it as a service*/
 
   /** assign it to wish list */
-
   if (wishlist.articles.indexOf(article._id) < 0) {
     wishlist.articles.push(article._id)
   }

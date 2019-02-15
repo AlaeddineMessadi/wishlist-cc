@@ -1,5 +1,5 @@
-const Article = require('../models/article.model.js');
-
+const Article = require('../models/article.model');
+const { createArticle, getArticles } = require('../services/article.service')
 const { to, ReE, ReS } = require('../utils/utils.service');
 
 
@@ -10,17 +10,11 @@ module.exports.create = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   let err, article;
 
-  let article_info = req.body;
-
-  [err, article] = await to(Article.findOne({ productid: article_info.productid }));
-
-  if (!article) {
-    [err, article] = await to(Article.create(article_info));
-  }
+  [err, article] = await createArticle(req.body);
 
   if (err) return ReE(res, err, 422);
 
-  return ReS(res, { article: article.toWeb() }, 201);
+  return ReS(res, { article: 'article.toWeb()' }, 201);
 };
 
 /**
@@ -30,7 +24,7 @@ module.exports.getAll = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
 
   let err, articles;
-  [err, articles] = await to(Article.find());
+  [err, articles] = await getArticles();
 
   let articles_json = []
   for (let i in articles) {
