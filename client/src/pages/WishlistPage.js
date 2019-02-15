@@ -12,10 +12,6 @@ class WishlistPage extends Component {
   componentWillMount() {
     console.log(this.props.wishlist)
     if (this.props.wishlist.length === 0) {
-      console.log('wish article')
-      console.log(this.props.wishlist_id)
-      // setTimeout(function () { console.log(this.props.wishlist_id) }, 3000);
-
       this.props.getArticles(this.props.wishlist_id);
     } else {
       console.log(this.props.wishlist)
@@ -28,7 +24,20 @@ class WishlistPage extends Component {
         <h1>Your Wishlist</h1>
         <section>
           {
-            [...[], this.props.wishlist].map((item, index) => (console.log(item)))
+            this.props.wishlist.map((item, index) => (
+              <Card key={ index }
+                wishlist_id={ this.props.wishlist_id }
+                article_id={ item._id }
+                name={ item.displayName }
+                price={ item.price }
+                salePrice={ item.salePrice }
+                reviews={ item.reviewRating }
+                imgUrl={ item.imageURL }
+                reviewCount={ item.reviewCount }
+                reviewRatings={ item.reviewRatings }
+                addedToWishlist={ true }
+              />
+            ))
           }
         </section>
 
@@ -48,7 +57,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    getArticles: (wishlist_id) => { console.log(wishlist_id); dispatch(wishlistRequestAction(wishlist_id)) }
+    getArticles: (wishlist_id) => { dispatch(wishlistRequestAction(wishlist_id)) }
   }
 };
 

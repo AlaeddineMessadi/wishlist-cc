@@ -16,13 +16,13 @@ export const wishlistService = {
         return await server.post('/wishlists', { name });
     },
     getAllArticles: async (wishlist_id) => {
-        return await server.get('/wishlists/articles', { wishlist_id });
+        return await server.get(`/wishlists/articles/${wishlist_id}`);
     },
-    addArticle: async (wishlist_id, article_id) => {
-        return await server.post('/wishlists', { wishlist_id, article_id });
+    addArticle: async ({ wishlist_id, article_id }) => {
+        return await server.post(`/wishlists/${wishlist_id}/${article_id}`);
     },
-    removeArticle: async (wishlist_id, article_id) => {
-        return await server.post('/wishlists', { wishlist_id, article_id });
+    removeArticle: async ({ wishlist_id, article_id }) => {
+        return await server.delete(`/wishlists/${wishlist_id}/${article_id}`);
     },
     searchAritcle: async (keyword) => {
         return await axios.get('https://www.adidas.co.uk/api/search/suggestions/' + keyword);
