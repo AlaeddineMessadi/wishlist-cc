@@ -8,7 +8,7 @@ const { to, TeE } = require('../utils/utils.service');
  */
 
 // Create
-module.exports.createWishlist = async function (newWishlist) {
+module.exports.createWishlist = async function (newWishlist = {}) {
   let err, wishlist;
   [err, wishlist] = await to(Wishlist.create(newWishlist));
 

@@ -12,7 +12,7 @@ module.exports.create = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   let err, wishlist;
 
-  [err, wishlist] = await createWishlist(req.body);
+  [err, wishlist] = await createWishlist();
   if (err) return ReE(res, err, 422);
 
   return ReS(res, { wishlist: wishlist.toWeb() }, 201);
@@ -53,17 +53,15 @@ module.exports.getOne = async function (req, res) {
  */
 module.exports.getAllArticles = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-  console.log('it is here')
-  let wishlist_id, err, wishlist;
+  console.log('heeer')
+  let err, wishlist, wishlist_id;
   wishlist_id = req.params.wishlist_id;
 
-  if (!wishlist_id) {
-    console.log('11111')
-    [err, wishlist] = await createWishlist(req.body);
+  console.log(wishlist_id)
+  if (!wishlist_id || wishlist_id === 'undefined' || wishlist_id === 'null') {
+    [err, wishlist] = await createWishlist();
     if (err) return ReE(res, err, 422);
   } else {
-    console.log('2222')
-
     [err, wishlist] = await to(Wishlist.findOne({ _id: wishlist_id }).populate('articles'));
 
     if (err) return ReE(res, "Error finding Wishlist");

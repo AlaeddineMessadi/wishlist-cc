@@ -1,11 +1,12 @@
 import * as actionType from '../actions/actionTypes';
 import * as actions from '../actions/actions';
 import { put, takeLatest, takeEvery, all } from 'redux-saga/effects';
-
-
-
 import { wishlistService } from '../services/wishlist.service';
 
+/**
+ * Create Wishlist
+ * @param {*} action 
+ */
 function* createWishlistSegaAction(action) {
     try {
         const response = yield wishlistService.createWishlist(action.payload.name);
@@ -21,6 +22,10 @@ function* createWishlistSegaAction(action) {
     }
 }
 
+/**
+ * Create Article
+ * @param {*} action 
+ */
 function* createArticleSegaAction(action) {
     try {
         const data = yield wishlistService.createArticle(action.payload.article);
@@ -30,6 +35,10 @@ function* createArticleSegaAction(action) {
     }
 }
 
+/**
+ * Search Article
+ * @param {*} action 
+ */
 function* searchArticleSegaAction(action) {
     try {
         const response = yield wishlistService.searchAritcle(action.payload);
@@ -40,21 +49,24 @@ function* searchArticleSegaAction(action) {
     }
 }
 
+/**
+ * Request Wishlist
+ * @param {*} action 
+ */
 function* requestWishlistSegaAction(action) {
     try {
-        let wishlist = [];
         const response = yield wishlistService.getAllArticles(action.payload);
-
-        if (response) {
-            wishlist = response.data.articles;
-        }
-        yield put(actions.wishlistRequestSuccess(wishlist));
+        yield put(actions.wishlistRequestSuccess(response.data));
 
     } catch (error) {
         yield put(actions.failedAction(error));
     }
 }
 
+/**
+ * Add Article to Wishlist
+ * @param {*} action 
+ */
 function* addArticleSegaAction(action) {
     console.log(action);
     try {
@@ -66,6 +78,10 @@ function* addArticleSegaAction(action) {
     }
 }
 
+/**
+ * Remove Article from Wishlist
+ * @param {*} action 
+ */
 function* removeArticleSegaAction(action) {
     console.log(action);
     try {
@@ -77,21 +93,27 @@ function* removeArticleSegaAction(action) {
     }
 }
 
-
+/**
+ * sega wishlist watcher
+ */
 function* wishlistWatcher() {
     yield takeLatest(actionType.CREATE_WISHLIST, createWishlistSegaAction);
-    yield takeLatest(actionType.CREATE_ARTICLE, createArticleSegaAction);
-    yield takeLatest(actionType.SEARCH_ARTICLE, searchArticleSegaAction);
     yield takeLatest(actionType.REQUEST_WISHLIST, requestWishlistSegaAction);
-    yield takeLatest(actionType.ADD_ARTICLE, addArticleSegaAction);
-    yield takeLatest(actionType.REMOVE_ARTICLE, removeArticleSegaAction);
-
 }
 
-
+/**
+ * sega Article watcher
+ */
+function* articlesWatcher() {
+    yield takeLatest(actionType.CREATE_ARTICLE, createArticleSegaAction);
+    yield takeLatest(actionType.SEARCH_ARTICLE, searchArticleSegaAction);
+    yield takeLatest(actionType.ADD_ARTICLE, addArticleSegaAction);
+    yield takeLatest(actionType.REMOVE_ARTICLE, removeArticleSegaAction);
+}
 
 export default function* rootSaga() {
     yield all([
-        wishlistWatcher()
+        wishlistWatcher(),
+        articlesWatcher()
     ]);
 }
