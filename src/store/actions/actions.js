@@ -70,3 +70,10 @@ export function successSearchAction(payload) {
         payload,
     }
 }
+
+export function successCreateWishlistAction(payload) {
+    return {
+        type: action.SUCCESS_CREATE_WISHLIST,
+        payload,
+    }
+}

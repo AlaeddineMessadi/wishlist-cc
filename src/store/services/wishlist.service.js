@@ -10,13 +10,13 @@ const server = axios.create({
 
 export const wishlistService = {
     createArticle: async (articles) => {
-        return await server.post('/articles', articles );
+        return await server.post('/articles', articles);
     },
     createWishlist: async (name) => {
         return await server.post('/wishlists', { name });
     },
     getAllArticles: async (wishlist_id) => {
-        return await server.get('/wishlists', { wishlist_id });
+        return await server.get('/wishlists/articles', { wishlist_id });
     },
     addArticle: async (wishlist_id, article_id) => {
         return await server.post('/wishlists', { wishlist_id, article_id });
