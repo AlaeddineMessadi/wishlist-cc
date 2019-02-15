@@ -1,6 +1,5 @@
-const Article = require('../models/article.model');
 const { createArticle, getArticles } = require('../services/article.service')
-const { to, ReE, ReS } = require('../utils/utils.service');
+const { ReE, ReS } = require('../utils/utils.service');
 
 
 /**

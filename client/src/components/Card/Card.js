@@ -14,10 +14,11 @@ class Card extends Component {
   }
 
   render() {
+    const { wishlist_id, article } = this.props;
     const {
-      name, imgUrl, price, salePrice, reviewCount,
-      reviewRatings, subTitle, wishlist_id, article_id
-    } = this.props;
+      displayName, imageURL, price, salePrice, reviewCount,
+      reviewRatings, subTitle
+    } = article;
 
     return (
       <div className={ classes.wrapper }>
@@ -26,7 +27,7 @@ class Card extends Component {
             className={ classes.top }
             style={
               {
-                background: `url(${imgUrl || defautlImage}) no-repeat center center`
+                background: `url(${imageURL || defautlImage}) no-repeat center center`
               }
             }
           ></div>
@@ -34,14 +35,14 @@ class Card extends Component {
             className={ `${classes.bottom} ${this.state.clicked ? classes.clicked : ''}` }>
             <div className={ classes.left }>
               <div className={ classes.details }>
-                <h2>{ name }</h2>
+                <h2>{ displayName }</h2>
                 <p>{ salePrice }</p>
               </div>
               <div
                 className={ classes.buy }
                 onClick={ () => {
                   this.setState({ clicked: true });
-                  this.props.addArticle(wishlist_id, article_id);
+                  this.props.addArticle(wishlist_id, article);
                 } }>
                 <i className="fas fa-cart-plus"></i>
               </div>
@@ -51,14 +52,14 @@ class Card extends Component {
                 <i className="fas fa-check"></i>
               </div>
               <div className={ classes.details }>
-                <h2>{ name }</h2>
+                <h2>{ displayName }</h2>
                 <p>Added to your Wishlist</p>
               </div>
               <div
                 className={ classes.remove }
                 onClick={ () => {
                   this.setState({ clicked: false });
-                  this.props.removeArticle(wishlist_id, article_id);
+                  this.props.removeArticle(wishlist_id, article._id);
                 } } >
                 <i className="fas fa-times"></i>
               </div>
@@ -69,7 +70,7 @@ class Card extends Component {
           <div className={ classes.icon }>
             <i className="fas fa-info-circle"></i></div>
           <div className={ classes.contents }>
-            <p>Name: { name }</p>
+            <p>Name: { displayName }</p>
             <p>Price: { price }</p>
             <p>SalePrice: { salePrice }</p>
             <p>Reviews: { reviewCount }</p>
@@ -82,11 +83,15 @@ class Card extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  wishlist_id: state.wishlist_id
+})
+
 const mapDispatchToProps = dispatch => {
   return {
-    addArticle: (wishlist_id, article_id) => { dispatch(addArticleAction({ wishlist_id, article_id })) },
+    addArticle: (wishlist_id, article) => { dispatch(addArticleAction({ wishlist_id, article })) },
     removeArticle: (wishlist_id, article_id) => { dispatch(removeArticleAction({ wishlist_id, article_id })) }
   }
 };
 
-export default connect(null, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
