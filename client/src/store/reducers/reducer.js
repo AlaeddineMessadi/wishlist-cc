@@ -1,13 +1,17 @@
 import {
     REQUEST_WISHLIST, SUCCESS_WISHLIST,
     ADD_ARTICLE, REMOVE_ARTICLE, SUCCESS, FAILED,
-    SEARCH_ARTICLE, SUCCESS_SEARCH_ARTICLE, SUCCESS_CREATE_WISHLIST, SET_WISHLIST_ID
+    SEARCH_ARTICLE, SUCCESS_SEARCH_ARTICLE, SET_WISHLIST_ID
 } from '../actions/actionTypes';
 
 let wishlist_id = sessionStorage.getItem('wishlist_id') || '';
 
-const intialState = { suggestList: [], wishlist: [], x: 'x', wishlist_id }
-export const reducer = (state = intialState, action) => {
+const initialState = {
+    suggestList: [],
+    wishlist: [],
+    wishlist_id
+}
+export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SEARCH_ARTICLE:
             return {
@@ -28,7 +32,8 @@ export const reducer = (state = intialState, action) => {
         case SET_WISHLIST_ID:
             return {
                 ...state,
-                wishlist_id: action.payload
+                wishlist_id: action.payload,
+                wishlist: []
             }
         case SUCCESS_WISHLIST:
             return {
@@ -49,11 +54,6 @@ export const reducer = (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: true,
-            }
-        case SUCCESS_CREATE_WISHLIST:
-            return {
-                ...state,
-                wishlist_id: action.payload
             }
         case FAILED:
             return {
