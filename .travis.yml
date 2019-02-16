@@ -5,3 +5,8 @@ deploy:
   app:
     server: adidas-wishlist-server
     client: adidas-wishlist-client
+  branches:
+    only:
+    - server
+    - client
+  skip_cleanup: true
