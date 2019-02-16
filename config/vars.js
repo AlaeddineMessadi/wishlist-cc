@@ -1,10 +1,13 @@
 const path = require('path');
 
-// import .env variables
-require('dotenv-safe').load({
-  path: path.join(__dirname, '../.env'),
-  sample: path.join(__dirname, '../.env.example'),
-});
+if (process.env.NODE_ENV === 'development') {
+  // import .env variables
+  require('dotenv-safe').load({
+    path: path.join(__dirname, '../.env'),
+    sample: path.join(__dirname, '../.env.example'),
+  });
+
+}
 
 let CONFIG = {} //Make this global to use all over the application
 
