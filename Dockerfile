@@ -8,7 +8,10 @@ RUN mkdir -p /app
 
 # set /app directory as default working directory
 WORKDIR /app
-ENV API_URL=https://adidas-wishlist-alaeddine.herokuapp.com/
+
+ENV API_URL=https://adidas-wishlist-server.herokuapp.com/
+ENV APP_ENV=dev
+
 # only copy package.json initially so that `RUN yarn` layer is recreated only
 # if there are changes in package.json
 ADD package.json yarn.lock /app/
@@ -25,4 +28,4 @@ COPY . /app/
 EXPOSE 8080
 
 # cmd to start service
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "start:dev" ]

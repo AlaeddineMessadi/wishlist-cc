@@ -1,7 +1,7 @@
 import * as actionType from '../actions/actionTypes';
 import * as actions from '../actions/actions';
 import { put, takeLatest, takeEvery, all } from 'redux-saga/effects';
-import { wishlistService } from '../services/wishlist.service';
+import { wishlistService } from '../../services/wishlist.service';
 
 /**
  * Create Wishlist

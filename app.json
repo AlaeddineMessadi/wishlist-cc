@@ -1,0 +1,23 @@
+{
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "Adidas Wishlist Client",
+  "env": {
+    "APP_ENV": "production",
+    "API_URL": "https://adidas-wishlist-server.herokuapp.com/"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "adidas-wishlist-client",
+  "scripts": {
+    "postdeploy": "bin/deploy.sh"
+  },
+  "stack": "heroku-18"
+}
