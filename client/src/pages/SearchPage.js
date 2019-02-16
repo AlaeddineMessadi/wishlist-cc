@@ -23,7 +23,7 @@ class SearchPage extends Component {
                                             key={ index }
                                             article={ item }
                                             addedToWishlist={
-                                                this.props.suggestList.find(
+                                                this.props.wishlist.find(
                                                     element => element.productid === item.productid
                                                 )
                                             }
@@ -43,7 +43,8 @@ const mapStateToProps = state => ({
     loading: state.loading,
     success: state.success,
     failed: state.failed,
-    suggestList: state.suggestList
+    suggestList: state.suggestList,
+    wishlist: state.wishlist
 })
 
 export default connect(mapStateToProps, null)(SearchPage);
