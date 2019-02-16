@@ -5,11 +5,11 @@ if (CONFIG.db_host != '') {
   mongoose.Promise = Promise; //set mongo up to use promises
 
   // print mongoose logs in dev env
+  let mongo_location = CONFIG.mongo_url
   if (CONFIG.app === 'dev') {
     mongoose.set('debug', true);
+    mongo_location = 'mongodb://' + CONFIG.db_host + ':' + CONFIG.db_port + '/' + CONFIG.db_name;
   }
-
-  const mongo_location = 'mongodb://' + CONFIG.db_host + ':' + CONFIG.db_port + '/' + CONFIG.db_name;
 
   let db = mongoose.connection;
   db.once('open', () => {

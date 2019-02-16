@@ -1,7 +1,5 @@
 {
-  "addons": [
-
-  ],
+  "addons": [],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -9,11 +7,12 @@
   ],
   "description": "Adidas Wishlist",
   "env": {
-    "NODE_ENV": "dev",
+    "NODE_ENV": "production",
     "PORT": "4040",
     "DB_DIALECT": "mongo",
     "DB_HOST": "adidas_mongodb",
-    "DB_NAME": "wishlist"
+    "DB_NAME": "wishlist",
+    "MONGO_URL": "'mongodb+srv://alaeddine:mongo1234@cluster0-ofkdk.mongodb.net/test?retryWrites=true'"
   },
   "formation": {
     "web": {
