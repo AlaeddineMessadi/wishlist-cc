@@ -15,25 +15,25 @@ const appEnv = process.env.REACT_APP_ENV || 'dev';
 let store;
 
 if (appEnv !== 'production') {
-    store = create(reducer,
-        composeWithDevTools(
-            applyMiddleware(
-                logger,
-                thunk,
-                segaMiddleware
-            )
-        )
+  store = create(reducer,
+    composeWithDevTools(
+      applyMiddleware(
+        logger,
+        thunk,
+        segaMiddleware
+      )
     )
+  );
 } else {
-    store = create(reducer,
-        applyMiddleware(
-            thunk,
-            segaMiddleware
-        )
+  store = create(reducer,
+    applyMiddleware(
+      thunk,
+      segaMiddleware
     )
+  );
 }
 
 export const createStore = () => {
-    segaMiddleware.run(rootSega);
-    return store;
+  segaMiddleware.run(rootSega);
+  return store;
 };

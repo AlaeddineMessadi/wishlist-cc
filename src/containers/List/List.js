@@ -7,7 +7,7 @@ const List = ({ items }) => {
     <div className={ classes.list_items }>
       { items }
     </div>
-  )
-}
+  );
+};
 
-export default List
+export default List;

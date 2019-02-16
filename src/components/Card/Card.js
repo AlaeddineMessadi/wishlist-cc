@@ -79,23 +79,23 @@ class Card extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
   wishlist_id: state.wishlist_id
-})
+});
 
 const mapDispatchToProps = dispatch => {
   return {
     addArticle: (wishlist_id, article) => {
-      dispatch(addArticleAction({ wishlist_id, article }))
+      dispatch(addArticleAction({ wishlist_id, article }));
     },
     removeArticle: (wishlist_id, article_id, productid) => {
-      dispatch(removeArticleAction({ wishlist_id, article_id, productid }))
+      dispatch(removeArticleAction({ wishlist_id, article_id, productid }));
     }
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

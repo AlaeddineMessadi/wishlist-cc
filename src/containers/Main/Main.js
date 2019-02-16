@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 import classes from './Main.module.scss';
 
@@ -8,7 +8,7 @@ class Main extends Component {
       <main className={ classes.container }>
         { this.props.children }
       </main>
-    )
+    );
   }
 }
 
