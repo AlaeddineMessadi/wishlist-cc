@@ -14,7 +14,7 @@ if (CONFIG.app !== 'production') {
 }
 
 
-CONFIG.port = process.env.PORT || '4040';
+CONFIG.port = (CONFIG.app == 'test') ? '4141' : process.env.PORT || '4040';
 
 CONFIG.db_dialect = process.env.DB_DIALECT || 'mongo';
 CONFIG.db_host = process.env.DB_HOST || 'localhost';

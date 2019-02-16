@@ -41,9 +41,11 @@ enter-server:
 destroy:
 	@docker-compose down --rmi local
 
-test:
-	@docker-compose exec -T client_adidas bash -c 'yarn test'
+test-api:
 	@docker-compose exec -T api_adidas bash -c 'yarn test'
+
+test-client:
+	@docker-compose exec -T client_adidas bash -c 'yarn test'
 
 install:
 	@docker-compose exec -T client_adidas bash -c 'yarn install'

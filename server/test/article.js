@@ -14,7 +14,7 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Articles', () => {
+describe('Articles', (done) => {
   beforeEach((done) => { //Before each test we empty the database
     Article.remove({}, (err) => {
       done();
