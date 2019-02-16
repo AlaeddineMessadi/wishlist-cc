@@ -1,14 +1,11 @@
 deploy:
   api_key:
     secure: H/BZpRiFGcQjyFtV9SU9FrLcuGUhrrmRXhQOj3E8N82dYo/PevkH6d5aTZ5kZMqbC61vTcJ9x4PqvV6AnZdZe4o0TXDf7NBdFsLBYH9TIZeCAs6xXKft65BY6GYrdvEIV+UniLbg7A+hZY647wqB3Cqy8GP+7LavOW9UyUH6d6FLYu2sXweoHMEQDxUSSvnVg1mztAWzkG7dyh5Rt+otaROSOX9Qu6sUTajkNuQjZDlfddnSbiEwfAtnIHI7K9pKktvdvhWu+fk7K7SbBnmCXjZ84nwUZ56U8Mydjyk0cFKINCFfVaIxtPwOheVgv3yEDEAWqkYQih78vdaGXWUcFwXn7PA0MFQylzO/Q84X9G9R2h6Valxb8C1qImYIbgoT0YW5xlS4aMGAutPj1K+796US2LlHO2RyIHwoh742Iom9Yec4FvRzYntAc3kUBwkqCFqnQbmTv42Z50/IV+LehvL6h5z4pnhPFCRHaX+vvk+PxhatxFDjRarDfikGfBK8htNY/SQ5pDZglNVsshkKSlCoJG8knzmEnnSNqfwlLGJgQdptDobJuJ71Dx4MLmQHmJsIvcpFRz5yAR6anMvb3W94X5beRJG71reVyiHiEIv7d1yudXJshMgs6k7Koc5CC6VG5Oq5yMMzAtZa6CNr70xLDtV20k8MWOB0SHdeLeo=
-
   app:
     server: adidas-wishlist-server
     client: adidas-wishlist-client
-
   branches:
     only:
     - server
     - client
-  
   skip_cleanup: true
