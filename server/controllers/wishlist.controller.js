@@ -53,11 +53,10 @@ module.exports.getOne = async function (req, res) {
  */
 module.exports.getAllArticles = async function (req, res) {
   res.setHeader('Content-Type', 'application/json');
-  console.log('heeer')
+
   let err, wishlist, wishlist_id;
   wishlist_id = req.params.wishlist_id;
 
-  console.log(wishlist_id)
   if (!wishlist_id || wishlist_id === 'undefined' || wishlist_id === 'null') {
     [err, wishlist] = await createWishlist();
     if (err) return ReE(res, err, 422);
