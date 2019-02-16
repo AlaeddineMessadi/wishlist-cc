@@ -6,10 +6,11 @@ if (CONFIG.db_host != '') {
 
   // print mongoose logs in dev env
   let mongo_location = CONFIG.mongo_url;
-  if (CONFIG.app === 'dev') {
+  if (CONFIG.app === 'development') {
     mongoose.set('debug', true);
     mongo_location = 'mongodb://' + CONFIG.db_host + ':' + CONFIG.db_port + '/' + CONFIG.db_name;
   }
+
 
   let db = mongoose.connection;
 
@@ -18,8 +19,7 @@ if (CONFIG.db_host != '') {
     console.log('Connected to mongo at ' + mongo_location);
   })
   db.on('error', (error) => {
-    console.log(mongo_location);
-    console.log("MongoDB connection error: ", error);
+    console.log("MongoDB connection error on: ", mongo_location);
   })
   // End of Mongoose Setup
 
