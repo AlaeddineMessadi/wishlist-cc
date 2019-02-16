@@ -7,8 +7,9 @@ import Main from '../Main/Main';
 import WishlistPage from '../../pages/WishlistPage';
 import SearchPage from '../../pages/SearchPage';
 
-
-
+/**
+ * App component
+ */
 class App extends Component {
   render() {
     return (
