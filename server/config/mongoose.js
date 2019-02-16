@@ -1,19 +1,21 @@
 const mongoose = require('mongoose');
 const CONFIG = require('./vars');
 
+/**
+ * Mongo Setup
+ */
 if (CONFIG.db_host != '') {
   mongoose.Promise = Promise; //set mongo up to use promises
 
   // print mongoose logs in dev env
   let mongo_location = CONFIG.mongo_url;
+
   if (CONFIG.app === 'development') {
     mongoose.set('debug', true);
     mongo_location = 'mongodb://' + CONFIG.db_host + ':' + CONFIG.db_port + '/' + CONFIG.db_name;
   }
 
-
   let db = mongoose.connection;
-
 
   db.once('open', () => {
     console.log('Connected to mongo at ' + mongo_location);

@@ -8,15 +8,30 @@ import { reducer } from './reducers/reducer';
 import rootSega from './sega';
 
 const segaMiddleware = createSagaMiddleware();
-const store = create(reducer,
-    composeWithDevTools(
+const appEnv = process.env.REACT_APP_ENV || 'dev';
+
+
+
+let store;
+
+if (appEnv !== 'production') {
+    store = create(reducer,
+        composeWithDevTools(
+            applyMiddleware(
+                logger,
+                thunk,
+                segaMiddleware
+            )
+        )
+    )
+} else {
+    store = create(reducer,
         applyMiddleware(
-            logger,
             thunk,
             segaMiddleware
         )
     )
-)
+}
 
 export const createStore = () => {
     segaMiddleware.run(rootSega);

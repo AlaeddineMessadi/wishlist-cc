@@ -1,6 +1,10 @@
 const path = require('path');
 
-if (process.env.NODE_ENV === 'development') {
+let CONFIG = {} //Make this global to use all over the application
+
+CONFIG.app = process.env.NODE_ENV || 'development';
+
+if (CONFIG.app !== 'production') {
   // import .env variables
   require('dotenv-safe').load({
     path: path.join(__dirname, '../.env'),
@@ -9,9 +13,7 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-let CONFIG = {} //Make this global to use all over the application
 
-CONFIG.app = process.env.NODE_ENV || 'development';
 CONFIG.port = process.env.PORT || '4040';
 
 CONFIG.db_dialect = process.env.DB_DIALECT || 'mongo';
