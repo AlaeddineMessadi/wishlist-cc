@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Search from '../components/Search/Search';
 import Card from '../components/Card/Card';
-import List from '../components/List/List';
+import List from '../containers/List/List';
 import Loader from '../components/Loader/Loader';
 
 class SearchPage extends Component {
@@ -12,24 +12,28 @@ class SearchPage extends Component {
             <div>
                 <h1>Search Articles</h1>
                 <Search />
-                <div style={ { paddingTop: "100px" } }>
-                    {
-                        this.props.loading ? (
-                            <Loader />
-                        ) : (
-                                <List items={
-                                    this.props.suggestList.map(
-                                        (item, index) => (
-                                            <Card
-                                                key={ index }
-                                                article={ item }
-                                            />
+                {
+                    this.props.loading ? (
+                        <Loader />
+                    ) : (
+                            <List items={
+                                this.props.suggestList.map(
+                                    (item, index) => {
+                                        return (<Card
+                                            key={ index }
+                                            article={ item }
+                                            addedToWishlist={
+                                                this.props.suggestList.find(
+                                                    element => element.productid === item.productid
+                                                )
+                                            }
+                                        />
                                         )
-                                    )
-                                }></List>
-                            )
-                    }
-                </div>
+                                    }
+                                )
+                            }></List>
+                        )
+                }
             </div>
         )
     }
@@ -39,7 +43,6 @@ const mapStateToProps = state => ({
     loading: state.loading,
     success: state.success,
     failed: state.failed,
-    wishlist_id: state.wishlist_id,
     suggestList: state.suggestList
 })
 
