@@ -4,7 +4,7 @@
 A webpage where you can create a wishlist of all the articles you want to have.
 
 ### Demo
-[DEMO link](https://build-rmrgjgvhlc.now.sh/ )
+[DEMO link](https://adidas-wishlist-client.herokuapp.com/ )
 
 ### Screenshot
 ![Wishlist Coding Challenge](https://raw.githubusercontent.com/AlaeddineMessadi/adidas-wishlist/master/assets/screanshot.png)
