@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-
+const apiUrl = process.env.API_URL || 'http://localhost:4040/v1/'
 const server = axios.create({
-    baseURL: 'http://localhost:4040/v1/',
+    baseURL: apiUrl,
     timeout: 1000,
     headers: { 'X-Custom-Header': 'REACT' }
 });

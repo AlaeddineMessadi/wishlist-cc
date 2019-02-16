@@ -7,7 +7,7 @@
   ],
   "description": "Adidas Wishlist",
   "env": {
-    "NODE_ENV": "development",
+    "NODE_ENV": "production",
     "PORT": "4040",
     "DB_DIALECT": "mongo",
     "DB_HOST": "adidas_mongodb",
