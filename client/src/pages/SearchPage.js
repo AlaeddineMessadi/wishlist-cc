@@ -31,7 +31,7 @@ class SearchPage extends Component {
                                         )
                                     }
                                 )
-                            }></List>
+                            } />
                         )
                 }
             </div>

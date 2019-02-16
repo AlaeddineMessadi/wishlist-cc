@@ -38,12 +38,13 @@ export const reducer = (state = initialState, action) => {
         case SUCCESS_WISHLIST:
             if (!state.wishlist_id) {
                 // set wishlist_id to sessionStorage
-                sessionStorage.setItem('wishlist_id', action.payload.id)
+                sessionStorage.setItem('wishlist_id', action.payload.id);
             }
             return {
                 ...state,
                 loading: false,
-                wishlist: action.payload.articles
+                wishlist: action.payload.articles,
+                wishlist_id: action.payload.id
             }
         case ADD_ARTICLE:
             return {

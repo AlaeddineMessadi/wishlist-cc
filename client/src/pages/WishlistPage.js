@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from '../components/Card/Card';
-import { wishlistRequestAction } from '../store/actions/actions';
+import { wishlistRequestAction, setWishlistIdAction } from '../store/actions/actions';
 
 
 class WishlistPage extends Component {
@@ -36,16 +36,19 @@ class WishlistPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.loading, success: state.success, failed: state.failed, wishlist_id: state.wishlist_id, x: state.x, wishlist: state.wishlist
-})
+  loading: state.loading,
+  success: state.success,
+  failed: state.failed,
+  wishlist_id: state.wishlist_id,
+  wishlist: state.wishlist
+});
 
 const mapDispatchToProps = dispatch => {
   return {
     getArticles: (wishlist_id) => {
       dispatch(wishlistRequestAction(wishlist_id))
     }
-  }
-}
+  };
+};
 
-  ;
 export default connect(mapStateToProps, mapDispatchToProps)(WishlistPage);

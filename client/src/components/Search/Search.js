@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { searchArticleAction, addArticleAction, removeArticleAction } from '../../store/actions/actions';
+import { searchArticleAction } from '../../store/actions/actions';
 
 import classes from './Search.module.scss';
 
@@ -45,9 +45,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        searchArticle: (keyword) => { dispatch(searchArticleAction(keyword)) },
-        addArticle: (wishlist_id, article_id) => { dispatch(addArticleAction(wishlist_id, article_id)) },
-        removeArticle: (wishlist_id, article_id) => { dispatch(removeArticleAction(wishlist_id, article_id)) }
+        searchArticle: (keyword) => { dispatch(searchArticleAction(keyword)) }
     }
 };
 
