@@ -102,6 +102,9 @@ module.exports.removeArticleToWishlist = async function (req, res) {
 
   const index = wishlist.articles.indexOf(article._id);
 
+  console.log(wishlist)
+  console.log(article)
+  console.log(index)
   if (index >= 0) {
     wishlist.articles.splice(index, 1);
   }
