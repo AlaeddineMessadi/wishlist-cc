@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from '../components/Card/Card';
-import { wishlistRequestAction, setWishlistIdAction } from '../store/actions/actions';
+import { wishlistRequestAction } from '../store/actions/actions';
 
-
+/**
+ * Wishlist Page
+ */
 class WishlistPage extends Component {
   // fetch all Articles from wishlist
   componentWillMount() {

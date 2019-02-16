@@ -6,7 +6,19 @@ import Card from '../components/Card/Card';
 import List from '../containers/List/List';
 import Loader from '../components/Loader/Loader';
 
+import { wishlistRequestAction } from '../store/actions/actions';
+
+/**
+ * Search Page
+ */
 class SearchPage extends Component {
+  // create a new wishlist incase no wishlist id found
+  componentWillMount() {
+    if (!this.props.wishlist_id) {
+      this.props.getArticles(this.props.wishlist_id);
+    }
+  }
+
   render() {
     return (
       <div>
@@ -44,7 +56,16 @@ const mapStateToProps = state => ({
   success: state.success,
   failed: state.failed,
   suggestList: state.suggestList,
-  wishlist: state.wishlist
+  wishlist: state.wishlist,
+  wishlist_id: state.wishlist_id
 });
 
-export default connect(mapStateToProps, null)(SearchPage);
+const mapDispatchToProps = dispatch => {
+  return {
+    getArticles: (wishlist_id) => {
+      dispatch(wishlistRequestAction(wishlist_id));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

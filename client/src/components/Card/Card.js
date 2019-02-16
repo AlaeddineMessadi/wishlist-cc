@@ -5,7 +5,9 @@ import { addArticleAction, removeArticleAction } from '../../store/actions/actio
 
 const defautlImage = 'https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg';
 
-
+/**
+ * Card component 
+ */
 class Card extends Component {
   state = { clicked: false }
 
