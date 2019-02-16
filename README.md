@@ -43,6 +43,7 @@ $ make deploy-server
 
 ## Built With
 * [Reactjs](https://reactjs.org) - The web framework used
+* [Create-React-App](https://reactjs.org/docs/create-a-new-react-app.html) - Boilerplate
 * [Redux](https://reactjs.org) & [Redux Sega](https://github.com/redux-saga/redux-saga) - State management
 * [Jest](https://jestjs.io) - Javascript unit Testing Framework
 * [Yarn](https://yarnpkg.com) - Dependency Management

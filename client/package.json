@@ -9,6 +9,7 @@
     "env-cmd": "^8.0.2",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
+    "eslint": "^5.14.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
@@ -28,7 +29,8 @@
     "build:staging": "./node_modules/env-cmd/bin/env-cmd.js .env.staging npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "./node_modules/eslint/bin/eslint.js --fix src/**/*.js"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -8,18 +8,18 @@ import { wishlistService } from '../../services/wishlist.service';
  * @param {*} action 
  */
 function* createWishlistSegaAction(action) {
-    try {
-        const response = yield wishlistService.createWishlist(action.payload.name);
-        const wishlist_id = response.data.wishlist.id;
-        // set wishlist_id to sessionStorage
-        sessionStorage.setItem('wishlist_id', wishlist_id)
+  try {
+    const response = yield wishlistService.createWishlist(action.payload.name);
+    const wishlist_id = response.data.wishlist.id;
+    // set wishlist_id to sessionStorage
+    sessionStorage.setItem('wishlist_id', wishlist_id);
 
-        yield put(actions.successCreateWishlistAction(wishlist_id));
+    yield put(actions.successCreateWishlistAction(wishlist_id));
 
-        yield put(actions.successAction());
-    } catch (error) {
-        yield put(actions.failedAction(error));
-    }
+    yield put(actions.successAction());
+  } catch (error) {
+    yield put(actions.failedAction(error));
+  }
 }
 
 /**
@@ -27,12 +27,12 @@ function* createWishlistSegaAction(action) {
  * @param {*} action 
  */
 function* createArticleSegaAction(action) {
-    try {
-        yield wishlistService.createArticle(action.payload.article);
-        yield put(actions.successAction());
-    } catch (error) {
-        yield put(actions.failedAction(error.response.data));
-    }
+  try {
+    yield wishlistService.createArticle(action.payload.article);
+    yield put(actions.successAction());
+  } catch (error) {
+    yield put(actions.failedAction(error.response.data));
+  }
 }
 
 /**
@@ -40,13 +40,13 @@ function* createArticleSegaAction(action) {
  * @param {*} action 
  */
 function* searchArticleSegaAction(action) {
-    try {
-        const response = yield wishlistService.searchAritcle(action.payload);
-        yield put(actions.successSearchAction(response.data.products));
+  try {
+    const response = yield wishlistService.searchAritcle(action.payload);
+    yield put(actions.successSearchAction(response.data.products));
 
-    } catch (error) {
-        yield put(actions.failedAction(error));
-    }
+  } catch (error) {
+    yield put(actions.failedAction(error));
+  }
 }
 
 /**
@@ -54,13 +54,13 @@ function* searchArticleSegaAction(action) {
  * @param {*} action 
  */
 function* requestWishlistSegaAction(action) {
-    try {
-        const response = yield wishlistService.getAllArticles(action.payload);
-        yield put(actions.wishlistRequestSuccess(response.data));
+  try {
+    const response = yield wishlistService.getAllArticles(action.payload);
+    yield put(actions.wishlistRequestSuccess(response.data));
 
-    } catch (error) {
-        yield put(actions.failedAction(error));
-    }
+  } catch (error) {
+    yield put(actions.failedAction(error));
+  }
 }
 
 /**
@@ -68,13 +68,13 @@ function* requestWishlistSegaAction(action) {
  * @param {*} action 
  */
 function* addArticleSegaAction(action) {
-    try {
-        yield wishlistService.addArticle(action.payload);
-        yield put(actions.successAction());
+  try {
+    yield wishlistService.addArticle(action.payload);
+    yield put(actions.successAction());
 
-    } catch (error) {
-        yield put(actions.failedAction(error));
-    }
+  } catch (error) {
+    yield put(actions.failedAction(error));
+  }
 }
 
 /**
@@ -82,37 +82,37 @@ function* addArticleSegaAction(action) {
  * @param {*} action 
  */
 function* removeArticleSegaAction(action) {
-    console.log(action);
-    try {
-        yield wishlistService.removeArticle(action.payload);
-        yield put(actions.successAction());
+  console.log(action);
+  try {
+    yield wishlistService.removeArticle(action.payload);
+    yield put(actions.successAction());
 
-    } catch (error) {
-        yield put(actions.failedAction(error));
-    }
+  } catch (error) {
+    yield put(actions.failedAction(error));
+  }
 }
 
 /**
  * sega wishlist watcher
  */
 function* wishlistWatcher() {
-    yield takeLatest(actionType.CREATE_WISHLIST, createWishlistSegaAction);
-    yield takeLatest(actionType.REQUEST_WISHLIST, requestWishlistSegaAction);
+  yield takeLatest(actionType.CREATE_WISHLIST, createWishlistSegaAction);
+  yield takeLatest(actionType.REQUEST_WISHLIST, requestWishlistSegaAction);
 }
 
 /**
  * sega Article watcher
  */
 function* articlesWatcher() {
-    yield takeLatest(actionType.CREATE_ARTICLE, createArticleSegaAction);
-    yield takeEvery(actionType.SEARCH_ARTICLE, searchArticleSegaAction);
-    yield takeLatest(actionType.ADD_ARTICLE, addArticleSegaAction);
-    yield takeLatest(actionType.REMOVE_ARTICLE, removeArticleSegaAction);
+  yield takeLatest(actionType.CREATE_ARTICLE, createArticleSegaAction);
+  yield takeEvery(actionType.SEARCH_ARTICLE, searchArticleSegaAction);
+  yield takeLatest(actionType.ADD_ARTICLE, addArticleSegaAction);
+  yield takeLatest(actionType.REMOVE_ARTICLE, removeArticleSegaAction);
 }
 
 export default function* rootSaga() {
-    yield all([
-        wishlistWatcher(),
-        articlesWatcher()
-    ]);
+  yield all([
+    wishlistWatcher(),
+    articlesWatcher()
+  ]);
 }

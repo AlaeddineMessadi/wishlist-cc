@@ -7,7 +7,6 @@ import Main from '../Main/Main';
 import WishlistPage from '../../pages/WishlistPage';
 import SearchPage from '../../pages/SearchPage';
 
-import { setWishlistIdAction } from '../../store/actions/actions';
 
 
 class App extends Component {

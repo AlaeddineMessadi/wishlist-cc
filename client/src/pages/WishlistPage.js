@@ -17,21 +17,21 @@ class WishlistPage extends Component {
           this.props.wishlist.length > 0 ? this.props.wishlist.map((item, index) => (<Card key={
             index
           }
-            article={
-              item
-            }
-            addedToWishlist={
-              true
-            }
+          article={
+            item
+          }
+          addedToWishlist={
+            true
+          }
           />)) : (
-              <center>
-                <p>Your Wishlist is Empty</p>
-              </center>
-            )
+            <center>
+              <p>Your Wishlist is Empty</p>
+            </center>
+          )
         }
         </section>
       </div>
-    )
+    );
   }
 }
 
@@ -46,7 +46,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     getArticles: (wishlist_id) => {
-      dispatch(wishlistRequestAction(wishlist_id))
+      dispatch(wishlistRequestAction(wishlist_id));
     }
   };
 };
