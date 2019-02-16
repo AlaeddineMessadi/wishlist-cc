@@ -13,7 +13,7 @@ module.exports.create = async function (req, res) {
 
   if (err) return ReE(res, err, 422);
 
-  return ReS(res, { article: 'article.toWeb()' }, 201);
+  return ReS(res, { article: article.toWeb() }, 201);
 };
 
 /**

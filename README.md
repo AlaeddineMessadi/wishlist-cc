@@ -20,6 +20,7 @@ To start :
 ```sh
 $ git clone git@github.com:AlaeddineMessadi/adidas-wishlist.git
 $ cd adidas-wishlist
+# change NODE_ENV to 'development' in .env file
 $ cp server/.env.example server/.env
 $ make run
 ```
