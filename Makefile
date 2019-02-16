@@ -44,3 +44,13 @@ destroy:
 install:
 	@docker-compose exec -T client_adidas bash -c 'yarn install'
 	@docker-compose exec -T api_adidas bash -c 'yarn install'
+
+deploy-server:
+	@git subtree push --prefix server git@github.com:AlaeddineMessadi/adidas-wishlist.git server
+
+deploy-client:
+	@git subtree push --prefix client git@github.com:AlaeddineMessadi/adidas-wishlist.git client
+
+deploy:
+	@git subtree push --prefix server git@github.com:AlaeddineMessadi/adidas-wishlist.git server
+	@git subtree push --prefix client git@github.com:AlaeddineMessadi/adidas-wishlist.git client
