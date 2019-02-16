@@ -1,6 +1,6 @@
 import * as actionType from '../actions/actionTypes';
 import * as actions from '../actions/actions';
-import { put, takeLatest, takeEvery, all } from 'redux-saga/effects';
+import { put, takeLatest, all } from 'redux-saga/effects';
 import { wishlistService } from '../services/wishlist.service';
 
 /**
@@ -28,7 +28,7 @@ function* createWishlistSegaAction(action) {
  */
 function* createArticleSegaAction(action) {
     try {
-        const data = yield wishlistService.createArticle(action.payload.article);
+        yield wishlistService.createArticle(action.payload.article);
         yield put(actions.successAction());
     } catch (error) {
         yield put(actions.failedAction(error.response.data));
@@ -70,7 +70,7 @@ function* requestWishlistSegaAction(action) {
 function* addArticleSegaAction(action) {
     console.log(action);
     try {
-        const response = yield wishlistService.addArticle(action.payload);
+        yield wishlistService.addArticle(action.payload);
         yield put(actions.successAction());
 
     } catch (error) {
@@ -85,7 +85,7 @@ function* addArticleSegaAction(action) {
 function* removeArticleSegaAction(action) {
     console.log(action);
     try {
-        const response = yield wishlistService.removeArticle(action.payload);
+        yield wishlistService.removeArticle(action.payload);
         yield put(actions.successAction());
 
     } catch (error) {

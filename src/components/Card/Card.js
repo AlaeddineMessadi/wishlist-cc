@@ -59,7 +59,7 @@ class Card extends Component {
                 className={ classes.remove }
                 onClick={ () => {
                   this.setState({ clicked: false });
-                  this.props.removeArticle(wishlist_id, article._id);
+                  this.props.removeArticle(wishlist_id, article._id, article.productid);
                 } } >
                 <i className="fas fa-times"></i>
               </div>
@@ -89,8 +89,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    addArticle: (wishlist_id, article) => { dispatch(addArticleAction({ wishlist_id, article })) },
-    removeArticle: (wishlist_id, article_id) => { dispatch(removeArticleAction({ wishlist_id, article_id })) }
+    addArticle: (wishlist_id, article) => {
+      dispatch(addArticleAction({ wishlist_id, article }))
+    },
+    removeArticle: (wishlist_id, article_id, productid) => {
+      dispatch(removeArticleAction({ wishlist_id, article_id, productid }))
+    }
   }
 };
 
