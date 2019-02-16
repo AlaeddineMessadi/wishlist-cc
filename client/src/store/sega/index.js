@@ -1,6 +1,6 @@
 import * as actionType from '../actions/actionTypes';
 import * as actions from '../actions/actions';
-import { put, takeLatest, all } from 'redux-saga/effects';
+import { put, takeLatest, takeEvery, all } from 'redux-saga/effects';
 import { wishlistService } from '../services/wishlist.service';
 
 /**
@@ -106,7 +106,7 @@ function* wishlistWatcher() {
  */
 function* articlesWatcher() {
     yield takeLatest(actionType.CREATE_ARTICLE, createArticleSegaAction);
-    yield takeLatest(actionType.SEARCH_ARTICLE, searchArticleSegaAction);
+    yield takeEvery(actionType.SEARCH_ARTICLE, searchArticleSegaAction);
     yield takeLatest(actionType.ADD_ARTICLE, addArticleSegaAction);
     yield takeLatest(actionType.REMOVE_ARTICLE, removeArticleSegaAction);
 }
