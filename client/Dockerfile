@@ -8,7 +8,7 @@ RUN mkdir -p /app
 
 # set /app directory as default working directory
 WORKDIR /app
-
+ENV API_URL=https://adidas-wishlist-alaeddine.herokuapp.com/
 # only copy package.json initially so that `RUN yarn` layer is recreated only
 # if there are changes in package.json
 ADD package.json yarn.lock /app/
