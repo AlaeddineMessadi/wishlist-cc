@@ -1,0 +1,27 @@
+{
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "Adidas Wishlist",
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "4040",
+    "DB_DIALECT": "mongo",
+    "DB_HOST": "adidas_mongodb",
+    "DB_NAME": "wishlist",
+    "MONGO_URL": "mongodb+srv://alaeddine:mongo1234@cluster0-ofkdk.mongodb.net/test?retryWrites=true"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "adidas-wishlist",
+  "scripts": {
+    "postdeploy": "bin/deploy.sh"
+  },
+  "stack": "heroku-18"
+}
