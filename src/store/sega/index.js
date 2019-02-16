@@ -68,7 +68,6 @@ function* requestWishlistSegaAction(action) {
  * @param {*} action 
  */
 function* addArticleSegaAction(action) {
-    console.log(action);
     try {
         yield wishlistService.addArticle(action.payload);
         yield put(actions.successAction());

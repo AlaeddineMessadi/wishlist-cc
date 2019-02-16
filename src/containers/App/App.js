@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 
 import Header from '../../components/Header/Header';
 import Main from '../Main/Main';
@@ -27,15 +26,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  wishlist_id: state.wishList_id
-})
-
-const mapDispatchToProps = dispatch => {
-  return {
-    setWishlistId: (wishList_id) => { dispatch(setWishlistIdAction(wishList_id)) }
-  }
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-;
+export default App;
