@@ -12,12 +12,13 @@ if (CONFIG.db_host != '') {
   }
 
   let db = mongoose.connection;
-  console.log(mongo_location);
+
 
   db.once('open', () => {
     console.log('Connected to mongo at ' + mongo_location);
   })
   db.on('error', (error) => {
+    console.log(mongo_location);
     console.log("MongoDB connection error: ", error);
   })
   // End of Mongoose Setup
