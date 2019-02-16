@@ -12,8 +12,8 @@ class Search extends Component {
 
     inputHandler = async (e) => {
         this.setState({ [e.target.name]: e.target.value })
-        if (this.state.keyword.length >= 3) {
-            setTimeout(() => { this.props.searchArticle(this.state.keyword); }, 1000);
+        if (this.state.keyword.length >= 2 || e.key === 'Enter') {
+            this.props.searchArticle(this.state.keyword);
         }
     }
 
@@ -25,7 +25,9 @@ class Search extends Component {
                     name="keyword"
                     type="text"
                     placeholder="What're we looking for ?"
-                    onChange={ (e) => { this.inputHandler(e) } } />
+                    onChange={ (e) => { this.inputHandler(e) } }
+                    onKeyPress={ (e) => { this.inputHandler(e) } }
+                />
                 <span className={ classes.submit }>
                     <i className="fa fa-search"></i>
                 </span>
