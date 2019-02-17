@@ -26,7 +26,8 @@ $ make run
 ```
 ### Testing
 ```sh
-$ make test
+$ make test-api
+$ make test-client
 ```
 
 ### Deployement
