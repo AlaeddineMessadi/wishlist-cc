@@ -1,4 +1,4 @@
-# Adidas Wishlist Coding Challenge  
+# Wishlist
 
 ## Description
 A webpage where you can create a wishlist of all the articles you want to have.
